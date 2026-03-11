@@ -104,6 +104,25 @@ static void canonicalize_hat_position(std::string& s) {
         char v = s[i];
         if (!is_hat_vowel(v)) continue;
 
+        // Special-case "aya" pattern for ây: move trailing 'a' next to the first 'a'.
+        // Example: "vayaj" -> "vaayj" (ây + tone) -> "vậy".
+        if (v == 'a' && i >= 2 && s[i - 1] == 'y') {
+            // Find previous 'a' before the 'y'.
+            int prev_a = -1;
+            for (int k = static_cast<int>(i) - 2; k >= 0; --k) {
+                char c = s[static_cast<std::size_t>(k)];
+                if (c == 'a') { prev_a = k; break; }
+                // Stop if we encounter another vowel before seeing an 'a'.
+                if (is_ascii_vowel(c)) break;
+            }
+            if (prev_a >= 0) {
+                s.erase(i, 1); // remove this 'a'
+                s.insert(static_cast<std::size_t>(prev_a + 1), 1, 'a');
+                i = static_cast<std::size_t>(prev_a + 1);
+                continue;
+            }
+        }
+
         // Find previous same vowel.
         int prev = -1;
         for (int k = static_cast<int>(i) - 1; k >= 0; --k) {

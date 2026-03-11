@@ -250,6 +250,8 @@ static void test_any_position_modifiers() {
     assert(telex_to_unicode("tieengwwabc") == "tieengwabc");
     // Triple vowel escape: whole word literal, with triple collapsed to double.
     assert(telex_to_unicode("tieengaaabc") == "tieengaabc");
+    // ây via delayed hat: "aya" pattern
+    assert(telex_to_unicode("vayaj") == "vậy");
     assert(telex_to_unicode("huaws") == "hứa");
     assert(telex_to_unicode("chuaw") == "chưa");
     assert(telex_to_unicode("hopwj") == "hợp");
