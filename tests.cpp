@@ -257,6 +257,11 @@ static void test_any_position_modifiers() {
     assert(telex_to_unicode("tieengaaabc") == "tieengaabc");
     // ây via delayed hat: "aya" pattern
     assert(telex_to_unicode("vayaj") == "vậy");
+    // iêu/yêu via delayed hat across 'u'
+    assert(telex_to_unicode("lieuej") == "liệu");
+    assert(telex_to_unicode("kieuer") == "kiểu");
+    // iêu with tone key inside: "ieu" + tone + "e"
+    assert(telex_to_unicode("lieuje") == "liệu");
     assert(telex_to_unicode("huaws") == "hứa");
     assert(telex_to_unicode("chuaw") == "chưa");
     assert(telex_to_unicode("hopwj") == "hợp");
@@ -269,6 +274,10 @@ static void test_any_position_modifiers() {
     // Tone placement for ươn/ương: tone must be on 'ư' (ướn, ướng).
     assert(telex_to_unicode("uowns") == "ướn");
     assert(telex_to_unicode("uowngs") == "ướng");
+
+    // Tone key 'r' before 'n' should still work when Telex shaping is present (oo -> ô).
+    assert(telex_to_unicode("oorn") == "ổn");
+
 }
 
 static bool has_non_ascii(const std::string& s) {

@@ -2,6 +2,9 @@ add_library(vnkey SHARED
     vnkey.cpp
     ../../engine.cpp
     ../../vietnamese.cpp
+    ../../rime_table.cpp
+    ../../canonicalize.cpp
+    ../../render_utf8.cpp
 )
 
 target_include_directories(vnkey PRIVATE

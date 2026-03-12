@@ -6,6 +6,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(unikey_telex_cpp
     vietnamese.cpp
+    rime_table.cpp
+    canonicalize.cpp
+    render_utf8.cpp
     engine.cpp
 )
 
