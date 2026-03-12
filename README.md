@@ -1,21 +1,36 @@
-## Bộ gõ Telex C++ và fcitx5 (vnkey)
+## vnkey – Vietnamese Telex engine (C++ core + fcitx5 addon)
 
-### 1. Thành phần chính
+`vnkey` là một bộ gõ Telex tiếng Việt gồm:
 
-Trong thư mục gốc `unikey/` hiện có:
+- **Core C++ engine**: hàm `telex_to_unicode` chuyển chuỗi Telex ASCII → Unicode tiếng Việt (dùng được độc lập).
+- **fcitx5 addon**: module `vnkey` cho Linux desktop (GNOME/KDE/…).
 
-- `vietnamese.h/.cpp`: Hàm `telex_to_unicode` chuyển chuỗi Telex → Unicode tiếng Việt.
-- `engine.h/.cpp`: Engine buffer C++ (`EngineVietCpp`)
-- `vnkey-fcitx/`: Addon fcitx5 `vnkey` (bộ gõ Telex dùng C++).
+Thiết kế dựa trên **cấu trúc âm tiết tiếng Việt** (*Âm đầu + Vần + Thanh*). Mô tả chi tiết xem thêm trong `vietnamese.md`.
 
-### 2. Build và chạy test C++
+---
 
-Yêu cầu:
+### 1. Cấu trúc thư mục
 
-- Compiler hỗ trợ C++17.
-- CMake ≥ 3.10.
+Trong thư mục gốc `unikey/`:
 
-Gợi ý cài dependency (tuỳ distro):
+- **`vietnamese.h/.cpp`**: API `telex_to_unicode(const std::string&)` – chuyển một chuỗi Telex thành Unicode.
+- **`engine.h/.cpp`**: lớp `EngineVietCpp` – quản lý buffer gõ theo từng phím, dùng trong fcitx5.
+- **`rime_table.*`**: bảng vần + vị trí “nguyên âm chính” để đặt dấu.
+- **`canonicalize.*`**: pipeline canonicalize input (escape rules, tách âm đầu/vần, chuẩn hoá vị trí w/aa/ee/oo, trích xuất thanh…).
+- **`render_utf8.*`**: render nội bộ → Unicode UTF‑8 (dấu, chữ hoa, v.v.).
+- **`vnkey-fcitx/`**: mã nguồn addon cho fcitx5.
+- **`install.sh`**: script cài đặt nhanh (build core + addon fcitx5).
+
+---
+
+### 2. Build core C++ và chạy test
+
+**Yêu cầu:**
+
+- Compiler hỗ trợ **C++17**.
+- **CMake ≥ 3.10**.
+
+**Cài công cụ build (gợi ý):**
 
 ```bash
 # Ubuntu/Debian
@@ -29,7 +44,7 @@ sudo dnf install -y gcc-c++ cmake make
 sudo pacman -S --needed base-devel cmake
 ```
 
-Lệnh:
+**Build + chạy test:**
 
 ```bash
 cmake -B build .
@@ -37,13 +52,13 @@ cmake --build build
 ./build/unikey_telex_cpp_tests
 ```
 
-Nếu mọi thứ ổn sẽ in ra:
+Nếu mọi thứ ổn, chương trình sẽ in:
 
 ```text
 All C++ tests passed.
 ```
 
-Nếu bạn vừa pull code mới mà build bị lạ, hãy build sạch:
+**Build sạch khi đổi nhánh/pull code lớn:**
 
 ```bash
 rm -rf build
@@ -52,27 +67,31 @@ cmake --build build
 ./build/unikey_telex_cpp_tests
 ```
 
-### 3. Cài bộ gõ `vnkey` cho fcitx5
+---
 
-Yêu cầu:
+### 3. Cài addon `vnkey` cho fcitx5
 
-- fcitx5 + file header phát triển (gói `fcitx5-dev` hoặc tương đương).
+#### 3.1. Yêu cầu
 
-Gợi ý cài dependency (tuỳ distro):
+- Đã cài **fcitx5** và header phát triển (tuỳ distro: `libfcitx5core-dev`, `fcitx5-devel`, …).
+
+**Gợi ý cài đặt (Linux):**
 
 ```bash
 # Ubuntu/Debian
 sudo apt update
 sudo apt install -y fcitx5 fcitx5-configtool libfcitx5core-dev libfcitx5utils-dev
 
-# Fedora (tên gói có thể khác nhẹ theo phiên bản)
+# Fedora (tên gói có thể thay đổi theo phiên bản)
 sudo dnf install -y fcitx5 fcitx5-configtool fcitx5-devel
 
 # Arch
 sudo pacman -S --needed fcitx5 fcitx5-configtool
 ```
 
-#### Cài toàn hệ thống (đề xuất)
+#### 3.2. Cài đặt thủ công bằng CMake
+
+- **Cài toàn hệ thống** (đề xuất, cần `sudo`):
 
 ```bash
 cd vnkey-fcitx
@@ -81,7 +100,7 @@ cmake --build build
 sudo cmake --install build
 ```
 
-#### Cài cho user hiện tại (không dùng sudo)
+- **Cài cho user hiện tại** (không dùng `sudo`, cài vào `$HOME/.local`):
 
 ```bash
 cd vnkey-fcitx
@@ -90,69 +109,109 @@ cmake --build build
 cmake --install build
 ```
 
-Sau đó restart fcitx5:
+Sau khi cài, restart fcitx5:
 
 ```bash
 fcitx5 -r
 ```
 
-Nếu mới cài lần đầu mà chưa thấy `vnkey` trong danh sách, hãy logout/login hoặc reboot.
+Nếu mới cài lần đầu mà chưa thấy `vnkey` trong danh sách input method, hãy **logout/login** hoặc **reboot** máy.
 
-#### Cài nhanh bằng script `install.sh`
+#### 3.3. Cài nhanh bằng script `install.sh`
 
-Ở thư mục gốc `unikey/` đã có sẵn script:
+Ở thư mục gốc `unikey/`:
 
 ```bash
 # Cài cho user hiện tại (PREFIX = $HOME/.local)
 ./install.sh --user
 
-# Hoặc cài toàn hệ thống (PREFIX = /usr, cần sudo)
+# Cài toàn hệ thống (PREFIX = /usr, cần sudo)
 ./install.sh --system
 ```
 
-Script sẽ:
+Script sẽ thực hiện:
 
-- Build core C++ + chạy `./build/unikey_telex_cpp_tests`.
+- Build core C++ và chạy `./build/unikey_telex_cpp_tests`.
 - Build addon `vnkey-fcitx`.
-- Chạy `cmake --install` với prefix tương ứng.
+- Cài đặt với `cmake --install` theo `PREFIX` tương ứng.
 
-### 4. Bật input method `vnkey`
+---
+
+### 4. Bật fcitx5 và chọn input method `vnkey`
+
+#### 4.1. Bật fcitx5 làm input method mặc định (nếu chưa cấu hình)
+
+Nếu bạn chưa dùng fcitx5, addon `vnkey` sẽ cài thành công nhưng **không hoạt động** do ứng dụng vẫn dùng input method khác (IBus, etc.).
+
+- **Bước 1** – Cài fcitx5 (xem mục 3) và mở GUI cấu hình:
+
+```bash
+fcitx5-configtool
+```
+
+- **Bước 2** – Đặt fcitx5 làm input method mặc định cho session:
+
+- **Cách A (Ubuntu/Debian)**:
+
+```bash
+im-config -n fcitx5
+```
+
+- **Cách B (GNOME/KDE, cấu hình tay)**: thêm các biến môi trường vào nơi phù hợp (`~/.profile`, `~/.xprofile`, hoặc file env của desktop):
+
+```bash
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+```
+
+- **Bước 3** – Logout/login (hoặc reboot), sau đó đảm bảo fcitx5 đang chạy:
+
+```bash
+fcitx5 -d
+```
+
+#### 4.2. Thêm `vnkey` vào danh sách input method
 
 1. Mở `fcitx5-configtool`.
-2. Tab **Input Method** → **Add** → tìm `**vnkey`**
-  (tên hiển thị: “Vietnamese (Telex) - vnkey”).
-3. Thêm vào danh sách và Apply.
-4. Dùng phím tắt của fcitx5 để chuyển sang `vnkey` rồi gõ thử:
-  - `tieengs vieetj` → `tiếng việt`
-  - `nguyeenx` → `nguyễn`
+2. Vào tab **Input Method** → bấm **Add** → tìm `vnkey`.  
+   Tên hiển thị: **“Vietnamese (Telex) – vnkey”**.
+3. Thêm vào danh sách, bấm **Apply**.
+4. Dùng phím tắt của fcitx5 để chuyển sang `vnkey`, và thử:
+   - `tieengs vieetj` → `tiếng việt`
+   - `nguyeenx` → `nguyễn`
 
-### 5. Hai chế độ gõ trong `vnkey`
+---
 
-Addon `vnkey` có **2 chế độ chính**:
+### 5. Chế độ gõ trong `vnkey`
 
-#### 5.1. Mặc định: preedit (gạch chân)
+Addon `vnkey` hỗ trợ **2 chế độ chính**:
 
-- Chữ đang gõ được hiển thị dưới dạng **preedit có gạch chân**.
+#### 5.1. Chế độ mặc định: preedit (gạch chân)
+
+- Ký tự đang gõ hiển thị dưới dạng **preedit có gạch chân**.
 - Khi nhấn Space / Enter / dấu câu, từ sẽ được “chốt” và gửi vào ứng dụng.
-- Ưu điểm: ổn định, tương thích tốt với hầu hết ứng dụng (editor, terminal, trình duyệt…).
+- Ưu điểm:
+  - Ổn định.
+  - Tương thích tốt với hầu hết ứng dụng (editor, terminal, trình duyệt, v.v.).
 
-#### 5.2. Thử nghiệm: Direct commit + rollback (không preedit)
+#### 5.2. Chế độ direct commit + rollback (không preedit)
 
-- Bật / tắt trong `fcitx5-configtool`:
+- Bật/tắt trong `fcitx5-configtool`:
   - Tab **Addons** → chọn **vnkey** → nút **Configure** →
-  checkbox **DirectCommitRollback** (mặc định đang bật).
-- Hiệu ứng người dùng:
-  - Chữ Việt xuất hiện **trực tiếp** trong ô nhập (không còn gạch chân).
-  - Gõ `nguyeenx` sẽ thấy hiện dần thành `nguyễn` ngay trong ứng dụng.
+  - Tích/ bỏ **DirectCommitRollback** (mặc định đang bật).
+- Hiệu ứng:
+  - Chữ Việt xuất hiện **trực tiếp** trong ô nhập (không có gạch chân).
+  - Ví dụ: gõ `nguyeenx` sẽ thấy dần biến thành `nguyễn` ngay trong ứng dụng.
 - Lưu ý:
-  - Một số ứng dụng không hỗ trợ đầy đủ tính năng của fcitx5, khi đó `vnkey`
-  sẽ tự động quay về chế độ preedit (gạch chân) để tránh lỗi.
-  - Undo/Redo trong vài ứng dụng có thể khác một chút so với chế độ mặc định.
-  Nếu cảm thấy khó chịu, hãy tắt tùy chọn **DirectCommitRollback**.
+  - Một số ứng dụng không hỗ trợ đầy đủ tính năng của fcitx5, khi đó `vnkey` có thể tự động quay về chế độ preedit để tránh lỗi.
+  - Hành vi Undo/Redo trong một số ứng dụng có thể khác đôi chút so với chế độ mặc định. Nếu cảm thấy khó chịu, hãy tắt **DirectCommitRollback**.
 
-### 6. Gỡ cài đặt `vnkey`
+---
 
-Nếu bạn đã cài `vnkey` vào `/usr`:
+### 6. Gỡ cài đặt addon `vnkey`
+
+#### 6.1. Nếu đã cài vào `/usr` (system-wide)
 
 ```bash
 sudo rm -f /usr/lib/fcitx5/vnkey.so
@@ -161,7 +220,7 @@ sudo rm -f /usr/share/fcitx5/inputmethod/vnkey.conf
 fcitx5 -r
 ```
 
-Nếu bạn cài bản user-local vào `$HOME/.local`:
+#### 6.2. Nếu đã cài vào `$HOME/.local` (user-local)
 
 ```bash
 rm -f "$HOME/.local/lib/fcitx5/vnkey.so"
