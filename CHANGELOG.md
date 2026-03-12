@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/sonnam0904/vnkey-fcitx5/compare/v1.1.1...v1.2.0) (2026-03-12)
+
+
+### Features
+
+* **rime:** enhance main vowel table with additional vowels and tone placement rules ([2ae7f56](https://github.com/sonnam0904/vnkey-fcitx5/commit/2ae7f56eb2e8a6375f72712f8ccd2a5dd2c7c9db))
+
 ## [1.1.1](https://github.com/sonnam0904/vnkey-fcitx5/compare/v1.1.0...v1.1.1) (2026-03-12)
 
 
