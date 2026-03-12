@@ -220,6 +220,9 @@ static void test_additional_words() {
     assert(telex_to_unicode("chir") == "chỉ");
     assert(telex_to_unicode("chix") == "chĩ");
     assert(telex_to_unicode("chij") == "chị");
+
+    // "quyết"
+    assert(telex_to_unicode("quyeets") == "quyết");
 }
 
 static void test_word_shapes_with_tones() {

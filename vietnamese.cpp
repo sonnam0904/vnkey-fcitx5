@@ -70,6 +70,7 @@ static const std::unordered_map<std::string, int>& get_rime_main_vowel_table() {
         add("oan", 1); add("oat", 1); add("oAn", 1); add("oAt", 1);
         add("uBn", 1); add("uBt", 1); add("oen", 1); add("oet", 1);
         add("uyEn", 2); add("uyEt", 2);  // uyên, uyết
+        add("yEn", 1); add("yEt", 1);    // yên, yết (quyết, khuyết, chuyến, ...)
         // ng/c
         add("ang", 0); add("ac", 0); add("Ang", 0); add("Ac", 0);
         add("Bng", 0); add("Bc", 0); add("eng", 0); add("ec", 0);
