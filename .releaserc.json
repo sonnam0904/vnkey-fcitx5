@@ -12,7 +12,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "export VNKEY_DEB_PACKAGE_VERSION=${nextRelease.version} && bash scripts/build-deb.sh"
+        "prepareCmd": "bash scripts/build-release-debs.sh ${nextRelease.version}"
       }
     ],
     [
@@ -26,7 +26,7 @@
       {
         "assets": [
           {
-            "path": "vnkey-fcitx/build-deb/*.deb",
+            "path": "release-debs/*.deb",
             "label": "Debian amd64 (.deb)"
           }
         ]

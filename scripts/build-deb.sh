@@ -14,6 +14,11 @@ if [[ -z "${VNKEY_DEB_PACKAGE_VERSION:-}" ]]; then
   fi
 fi
 
+# Optional: CI matrix tag (e.g. jammy / noble) appended for unique .deb names.
+if [[ -n "${VNKEY_DEB_PACKAGE_SUFFIX:-}" ]]; then
+  export VNKEY_DEB_PACKAGE_VERSION="${VNKEY_DEB_PACKAGE_VERSION}+${VNKEY_DEB_PACKAGE_SUFFIX}"
+fi
+
 cmake -S "${ROOT}/vnkey-fcitx" -B "${BUILD_DIR}" \
   -DCMAKE_INSTALL_PREFIX=/usr \
   -DCMAKE_BUILD_TYPE=Release

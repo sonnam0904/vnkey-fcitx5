@@ -27,3 +27,6 @@ pnpm-debug.log*
 # Debian packages (built locally or by CI; do not commit)
 *.deb
 
+# semantic-release dual-target .deb output
+/release-debs/
+

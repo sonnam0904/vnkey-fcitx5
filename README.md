@@ -128,10 +128,10 @@ File `.deb` **không nằm trong repo**; mỗi bản được build trên GitHub
 
 | Nguồn | Cách lấy |
 |--------|-----------|
-| **Releases** | [Releases](https://github.com/sonnam0904/vnkey-fcitx5/releases) → bản có tag semver → tải file `.deb` đính kèm (một file, build trên runner Ubuntu). |
-| **Artifacts** | Tab **Actions** → workflow **Release** trên nhánh `main` → run gần nhất → **Artifacts** → tải `vnkey-fcitx5-deb`. Đây là file ZIP: giải nén sẽ thấy `.deb` (build trên Ubuntu runner của GitHub). |
+| **Releases** | [Releases](https://github.com/sonnam0904/vnkey-fcitx5/releases) → mỗi tag thường có **hai** `.deb`: tên gói có hậu tố **`+jammy`** (22.04) hoặc **`+noble`** (24.04) — chọn đúng bản cho máy. |
+| **Artifacts** | Mỗi push `main` có hai ZIP: **`vnkey-fcitx5-deb-jammy`** và **`vnkey-fcitx5-deb-noble`**. **Actions** → **Release** → run mới nhất → **Artifacts** (giải nén ra `.deb`). |
 
-Tên file trong gói thường dạng `vnkey-fcitx5_<phiên-bản>_amd64.deb` (phiên bản có thể gắn thêm hậu tố commit / build tùy cấu hình CI).
+Tên file dạng `vnkey-fcitx5_<phiên-bản>+jammy_amd64.deb` hoặc `…+noble_…`.
 
 **2. Cài (Ubuntu / Debian — dùng `apt`)**
 
