@@ -41,6 +41,26 @@ jobs:
           name: vnkey-fcitx5-deb-${{ matrix.suffix }}
           path: vnkey-fcitx/build-deb/*.deb
 
+  package-rpm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build RPM via Docker (Fedora)
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace fedora:40 bash -c "
+            dnf install -y cmake gcc-c++ make fcitx5-devel git rpm-build
+            chmod +x scripts/build-rpm.sh
+            bash scripts/build-rpm.sh
+          "
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vnkey-fcitx5-rpm-fedora
+          path: vnkey-fcitx/build-rpm/*.rpm
+
   release:
     runs-on: ubuntu-22.04
     steps:
