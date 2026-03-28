@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -40,6 +41,31 @@ jobs:
         with:
           name: vnkey-fcitx5-deb-${{ matrix.suffix }}
           path: vnkey-fcitx/build-deb/*.deb
+
+  package-rpm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build RPM via Docker (Fedora)
+        env:
+          VNKEY_RPM_PACKAGE_SUFFIX: fedora43
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace \
+            -e VNKEY_RPM_PACKAGE_SUFFIX=${VNKEY_RPM_PACKAGE_SUFFIX} \
+            fedora:43 bash -c '
+            dnf install -y cmake gcc-c++ make fcitx5-devel extra-cmake-modules git rpm-build
+            git config --global --add safe.directory /workspace
+            bash scripts/build-rpm.sh
+          '
+          sudo chown -R $(id -u):$(id -g) vnkey-fcitx/build-rpm
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vnkey-fcitx5-rpm-fedora43
+          path: vnkey-fcitx/build-rpm/*.rpm
 
   release:
     runs-on: ubuntu-22.04
