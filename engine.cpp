@@ -36,13 +36,11 @@ KeyResult EngineVietCpp::process_key_event(std::uint32_t keyval,
         return res;
     }
 
-    // Enter: commit buffer if any.
+    // Enter: commit buffer if any and let the Enter key go through (so messages send immediately).
     if (keyval == KEYVAL_RETURN) {
         if (!buffer_.empty()) {
             res.commit_text = convert_buffer_for_commit();
             buffer_.clear();
-            res.handled = true;
-            return res;
         }
         res.handled = false;
         return res;

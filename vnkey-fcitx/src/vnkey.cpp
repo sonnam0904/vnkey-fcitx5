@@ -65,12 +65,17 @@ void VnkeyEngine::updatePreedit(InputContext *ic) {
 
     const std::string &buffer = engine_.buffer();
     if (buffer.empty()) {
+        if (lastPreedit_.empty()) return;
+        lastPreedit_.clear();
         ic->inputPanel().setClientPreedit(Text());
         ic->updatePreedit();
         return;
     }
 
     std::string preeditStr = convert_buffer(buffer);
+    if (preeditStr == lastPreedit_) return;
+    lastPreedit_ = preeditStr;
+
     Text preedit;
     preedit.append(preeditStr, TextFormatFlag::Underline);
     // Place cursor at the end of the preedit text (by byte).
@@ -168,9 +173,9 @@ void VnkeyEngine::keyEventDirectRollback(InputContext *ic, KeyEvent &keyEvent) {
 
             if (!rollbackDisplay_.empty()) {
                 int oldChars = utf8CharCount(rollbackDisplay_);
-                if (oldChars > 0) {
-                    ic->deleteSurroundingText(-oldChars,
-                                              static_cast<unsigned int>(oldChars));
+                for (int i = 0; i < oldChars; ++i) {
+                    ic->forwardKey(Key(FcitxKey_BackSpace), false);
+                    ic->forwardKey(Key(FcitxKey_BackSpace), true);
                 }
             }
             if (!newDisplay.empty()) {
@@ -199,9 +204,9 @@ void VnkeyEngine::keyEventDirectRollback(InputContext *ic, KeyEvent &keyEvent) {
 
     if (!rollbackDisplay_.empty()) {
         int oldChars = utf8CharCount(rollbackDisplay_);
-        if (oldChars > 0) {
-            ic->deleteSurroundingText(-oldChars,
-                                      static_cast<unsigned int>(oldChars));
+        for (int i = 0; i < oldChars; ++i) {
+            ic->forwardKey(Key(FcitxKey_BackSpace), false);
+            ic->forwardKey(Key(FcitxKey_BackSpace), true);
         }
     }
     if (!newDisplay.empty()) {
@@ -216,8 +221,17 @@ void VnkeyEngine::keyEventDirectRollback(InputContext *ic, KeyEvent &keyEvent) {
 void VnkeyEngine::reset(const InputMethodEntry &entry, InputContextEvent &event) {
     FCITX_UNUSED(entry);
     auto *ic = event.inputContext();
+    
+    if (ic && !engine_.buffer().empty()) {
+        std::string preeditStr = convert_buffer(engine_.buffer());
+        if (!preeditStr.empty()) {
+            ic->commitString(preeditStr);
+        }
+    }
+    
     engine_.reset();
     rollbackClearState();
+    lastPreedit_.clear();
     if (ic) {
         ic->inputPanel().setClientPreedit(Text());
         ic->updatePreedit();

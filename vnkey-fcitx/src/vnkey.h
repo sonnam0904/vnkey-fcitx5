@@ -44,6 +44,8 @@ private:
     std::string rollbackRawAscii_;
     std::string rollbackDisplay_;
 
+    std::string lastPreedit_;
+
     void updatePreedit(fcitx::InputContext *ic);
 
     void keyEventPreedit(fcitx::InputContext *ic, fcitx::KeyEvent &keyEvent);
