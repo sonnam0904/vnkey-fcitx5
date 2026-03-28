@@ -165,23 +165,34 @@ void VnkeyEngine::keyEventDirectRollback(InputContext *ic, KeyEvent &keyEvent) {
 
     auto sym = key.sym();
 
+    auto applyDiff = [&](const std::string& oldStr, const std::string& newStr) {
+        size_t commonBytes = 0;
+        while (commonBytes < oldStr.size() && commonBytes < newStr.size() && oldStr[commonBytes] == newStr[commonBytes]) {
+            commonBytes++;
+        }
+        while (commonBytes > 0 && (oldStr[commonBytes] & 0xC0) == 0x80) {
+            commonBytes--;
+        }
+        
+        int commonChars = utf8CharCount(oldStr.substr(0, commonBytes));
+        int backspacesNeeded = utf8CharCount(oldStr) - commonChars;
+        std::string stringToCommit = newStr.substr(commonBytes);
+        
+        for (int i = 0; i < backspacesNeeded; ++i) {
+            ic->forwardKey(Key(FcitxKey_BackSpace), false);
+            ic->forwardKey(Key(FcitxKey_BackSpace), true);
+        }
+        if (!stringToCommit.empty()) {
+            ic->commitString(stringToCommit);
+        }
+    };
+
     // Backspace: update our internal buffers and rewrite the current word.
     if (sym == FcitxKey_BackSpace) {
         if (!rollbackRawAscii_.empty()) {
             rollbackRawAscii_.pop_back();
             std::string newDisplay = telex_to_unicode(rollbackRawAscii_);
-
-            if (!rollbackDisplay_.empty()) {
-                int oldChars = utf8CharCount(rollbackDisplay_);
-                for (int i = 0; i < oldChars; ++i) {
-                    ic->forwardKey(Key(FcitxKey_BackSpace), false);
-                    ic->forwardKey(Key(FcitxKey_BackSpace), true);
-                }
-            }
-            if (!newDisplay.empty()) {
-                ic->commitString(newDisplay);
-            }
-
+            applyDiff(rollbackDisplay_, newDisplay);
             rollbackDisplay_ = newDisplay;
             keyEvent.filterAndAccept();
             return;
@@ -201,17 +212,7 @@ void VnkeyEngine::keyEventDirectRollback(InputContext *ic, KeyEvent &keyEvent) {
     // Letter key: rewrite the word in-place.
     rollbackRawAscii_.push_back(static_cast<char>(sym));
     std::string newDisplay = telex_to_unicode(rollbackRawAscii_);
-
-    if (!rollbackDisplay_.empty()) {
-        int oldChars = utf8CharCount(rollbackDisplay_);
-        for (int i = 0; i < oldChars; ++i) {
-            ic->forwardKey(Key(FcitxKey_BackSpace), false);
-            ic->forwardKey(Key(FcitxKey_BackSpace), true);
-        }
-    }
-    if (!newDisplay.empty()) {
-        ic->commitString(newDisplay);
-    }
+    applyDiff(rollbackDisplay_, newDisplay);
     rollbackDisplay_ = newDisplay;
 
     // We commit ourselves, so do not forward the original key.
