@@ -15,7 +15,7 @@ else()
   set(_vnkey_pkg_ver "${PROJECT_VERSION}")
 endif()
 
-set(CPACK_GENERATOR "DEB" "RPM")
+set(CPACK_GENERATOR "DEB")
 set(CPACK_PACKAGE_NAME "vnkey-fcitx5")
 set(CPACK_PACKAGE_VENDOR "vnkey")
 set(CPACK_PACKAGE_VERSION "${_vnkey_pkg_ver}")

@@ -50,11 +50,12 @@ jobs:
 
       - name: Build RPM via Docker (Fedora)
         run: |
-          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace fedora:40 bash -c "
-            dnf install -y cmake gcc-c++ make fcitx5-devel git rpm-build
-            chmod +x scripts/build-rpm.sh
+          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace fedora:43 bash -c '
+            dnf install -y cmake gcc-c++ make fcitx5-devel extra-cmake-modules git rpm-build
+            git config --global --add safe.directory /workspace
             bash scripts/build-rpm.sh
-          "
+          '
+          sudo chown -R $(id -u):$(id -g) vnkey-fcitx/build-rpm
 
       - uses: actions/upload-artifact@v4
         with:
