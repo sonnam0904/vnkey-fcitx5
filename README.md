@@ -165,7 +165,7 @@ Rồi thêm input method **vnkey** trong `fcitx5-configtool` như **mục 4**. L
 File `.rpm` cũng được thiết kế tự động build trên GitHub Actions mỗi khi có bản release mới. Gói này yêu cầu hệ thống phải cài đặt sẵn `fcitx5` (có trong repository chính mặc định của Fedora).
 
 **1. Tải `.rpm`**
-Tương tự file DEB, bạn có thể lấy gói `.rpm` từ tab [Releases](https://github.com/sonnam0904/vnkey-fcitx5/releases) hoặc nhánh **Actions** -> Artifacts. Tên file thường có dạng `vnkey-fcitx5-*-rpm-fedora.rpm`.
+Tương tự file DEB, bạn có thể lấy gói `.rpm` từ tab [Releases](https://github.com/sonnam0904/vnkey-fcitx5/releases) hoặc nhánh **Actions** -> Artifacts. Tên file thường có dạng `vnkey-fcitx5-*-fedora43.rpm`.
 
 **2. Cài đặt (bằng `dnf`)**
 Vào thư mục chứa file vừa tải về và sử dụng `dnf` cài đặt:

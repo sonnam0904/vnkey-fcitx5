@@ -13,8 +13,13 @@ if [[ -z "${VNKEY_PACKAGE_VERSION:-}" ]]; then
   fi
 fi
 
-# Modern RPM version strings might dislike hyphens or pluses
-export VNKEY_PACKAGE_VERSION="${VNKEY_PACKAGE_VERSION//-/\~}"
+# Modern RPM version strings refuse hyphens and pluses
+VNKEY_PACKAGE_VERSION="${VNKEY_PACKAGE_VERSION//-/\~}"
+export VNKEY_PACKAGE_VERSION="${VNKEY_PACKAGE_VERSION//+/\~}"
+
+if [[ -n "${VNKEY_RPM_PACKAGE_SUFFIX:-}" ]]; then
+  export VNKEY_PACKAGE_VERSION="${VNKEY_PACKAGE_VERSION}~${VNKEY_RPM_PACKAGE_SUFFIX}"
+fi
 
 cmake -S "${ROOT}/vnkey-fcitx" -B "${BUILD_DIR}" \
   -DCMAKE_INSTALL_PREFIX=/usr \

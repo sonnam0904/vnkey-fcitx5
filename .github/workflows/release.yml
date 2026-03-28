@@ -50,8 +50,12 @@ jobs:
           fetch-depth: 0
 
       - name: Build RPM via Docker (Fedora)
+        env:
+          VNKEY_RPM_PACKAGE_SUFFIX: fedora43
         run: |
-          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace fedora:43 bash -c '
+          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace \
+            -e VNKEY_RPM_PACKAGE_SUFFIX=${VNKEY_RPM_PACKAGE_SUFFIX} \
+            fedora:43 bash -c '
             dnf install -y cmake gcc-c++ make fcitx5-devel extra-cmake-modules git rpm-build
             git config --global --add safe.directory /workspace
             bash scripts/build-rpm.sh
@@ -60,7 +64,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: vnkey-fcitx5-rpm-fedora
+          name: vnkey-fcitx5-rpm-fedora43
           path: vnkey-fcitx/build-rpm/*.rpm
 
   release:
