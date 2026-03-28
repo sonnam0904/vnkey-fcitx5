@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/hthienloc/vnkey-fcitx5/compare/v1.0.0...v1.0.1) (2026-03-28)
+
+
+### Bug Fixes
+
+* optimize preedit updates, replace surrounding text deletion with backspace keys, and allow Enter key propagation ([aac885a](https://github.com/hthienloc/vnkey-fcitx5/commit/aac885ae7421d95d226b24d0a06d2f64d41047cb))
+
 # 1.0.0 (2026-03-28)
 
 
