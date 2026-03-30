@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/sonnam0904/vnkey-fcitx5/compare/v1.2.4...v1.3.0) (2026-03-30)
+
+
+### Features
+
+* add RPM packaging support via CPack and GitHub Actions workflow ([3eff391](https://github.com/sonnam0904/vnkey-fcitx5/commit/3eff3915b39fdfaf3573232bdba4796c59e72637))
+
 ## [1.2.4](https://github.com/sonnam0904/vnkey-fcitx5/compare/v1.2.3...v1.2.4) (2026-03-29)
 
 
