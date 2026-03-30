@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/sonnam0904/vnkey-fcitx5/compare/v1.3.0...v1.3.1) (2026-03-30)
+
+
+### Bug Fixes
+
+* **release:** align RPM asset version with DEB releases ([f66622b](https://github.com/sonnam0904/vnkey-fcitx5/commit/f66622badb2b72e6e0b6d5fdacf450f985994a88))
+
 # [1.3.0](https://github.com/sonnam0904/vnkey-fcitx5/compare/v1.2.4...v1.3.0) (2026-03-30)
 
 
