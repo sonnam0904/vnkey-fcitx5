@@ -160,9 +160,33 @@ Rồi thêm input method **vnkey** trong `fcitx5-configtool` như **mục 4**. L
 
 **Gỡ:** nếu đã cài bằng `.deb`, dùng **mục 6.1** (`sudo apt remove vnkey-fcitx5`).
 
-#### 3.4. Cài nhanh bằng script `install.sh`
+#### 3.4. Cài bằng gói `.rpm` (Fedora / CentOS)
 
-Ở thư mục gốc `unikey/`:
+File `.rpm` cũng được thiết kế tự động build trên GitHub Actions mỗi khi có bản release mới. Gói này yêu cầu hệ thống phải cài đặt sẵn `fcitx5` (có trong repository chính mặc định của Fedora).
+
+**1. Tải `.rpm`**
+Tương tự file DEB, bạn có thể lấy gói `.rpm` từ tab [Releases](https://github.com/sonnam0904/vnkey-fcitx5/releases) hoặc nhánh **Actions** -> Artifacts. Tên file thường có dạng `vnkey-fcitx5-*-fedora43.rpm`.
+
+**2. Cài đặt (bằng `dnf`)**
+Vào thư mục chứa file vừa tải về và sử dụng `dnf` cài đặt:
+
+```bash
+cd ~/Downloads
+sudo dnf install -y ./vnkey-fcitx5*.rpm
+```
+
+**3. Sau khi cài**
+Khởi động lại tiến trình engine:
+
+```bash
+fcitx5 -r
+```
+
+Và sau đó thiết lập thêm input method **vnkey** trong `fcitx5-configtool` như mục 4 ở dưới.
+
+#### 3.5. Cài nhanh bằng script `install.sh`
+
+Ở thư mục gốc `vnkey/`:
 
 ```bash
 # Cài cho user hiện tại (PREFIX = $HOME/.local)
@@ -278,4 +302,3 @@ rm -f "$HOME/.local/share/fcitx5/addon/vnkey.conf"
 rm -f "$HOME/.local/share/fcitx5/inputmethod/vnkey.conf"
 fcitx5 -r
 ```
-
