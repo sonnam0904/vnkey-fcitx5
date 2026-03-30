@@ -12,7 +12,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "bash scripts/build-release-debs.sh ${nextRelease.version}"
+        "prepareCmd": "bash scripts/build-release-debs.sh ${nextRelease.version} && bash scripts/build-release-rpm.sh ${nextRelease.version}"
       }
     ],
     [
@@ -28,6 +28,10 @@
           {
             "path": "release-debs/*.deb",
             "label": "Debian amd64 (.deb)"
+          },
+          {
+            "path": "release-rpms/*.rpm",
+            "label": "RPM x86_64 (.rpm) - Fedora"
           }
         ]
       }

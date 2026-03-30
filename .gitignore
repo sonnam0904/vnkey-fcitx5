@@ -3,6 +3,7 @@
 **/build/
 # CPack / scripts/build-deb.sh output (name is build-deb, not build)
 **/build-deb/
+**/build-rpm/
 
 # CMake-generated files
 CMakeCache.txt
@@ -26,7 +27,8 @@ pnpm-debug.log*
 
 # Debian packages (built locally or by CI; do not commit)
 *.deb
+*.rpm
 
 # semantic-release dual-target .deb output
 /release-debs/
-
+/release-rpms/
