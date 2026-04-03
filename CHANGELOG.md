@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/sonnam0904/telebit/compare/v2.0.0...v2.0.1) (2026-04-03)
+
+
+### Bug Fixes
+
+* update repository links ([8c9f6e0](https://github.com/sonnam0904/telebit/commit/8c9f6e07c7ec3adb8b8eeaa93431a95aa016efac))
+
 # [2.0.0](https://github.com/sonnam0904/telebit/compare/v1.3.1...v2.0.0) (2026-04-03)
 
 
