@@ -1,3 +1,29 @@
+# [2.0.0](https://github.com/sonnam0904/vnkey-fcitx5/compare/v1.3.1...v2.0.0) (2026-04-03)
+
+
+* chore!: rebrand vnkey to Telebit (telebit-fcitx5) ([a831acf](https://github.com/sonnam0904/vnkey-fcitx5/commit/a831acf702ea8bf79517c745ba254303230daacd))
+* chore!: rebrand vnkey to Telebit (telebit-fcitx5) ([e23b14c](https://github.com/sonnam0904/vnkey-fcitx5/commit/e23b14c44b75f25a88b6b7f037786a27cfea4ede))
+
+
+### BREAKING CHANGES
+
+* This is a full product and integration rename. Anything
+that depended on the old vnkey / vnkey-fcitx5 names, file paths, fcitx5 addon
+and input method IDs, shared object name, user addon config keys, CMake
+target names, packaging metadata, or version override environment variables
+must be updated. Existing users should remove the old input method if
+needed, install the new addon, add Telebit (telebit-fcitx5) in
+fcitx5-configtool, and restart fcitx5; prior per-IME settings are not
+migrated automatically.
+* This is a full product and integration rename. Anything
+that depended on the old vnkey / vnkey-fcitx5 names, file paths, fcitx5 addon
+and input method IDs, shared object name, user addon config keys, CMake
+target names, packaging metadata, or version override environment variables
+must be updated. Existing users should remove the old input method if
+needed, install the new addon, add Telebit (telebit-fcitx5) in
+fcitx5-configtool, and restart fcitx5; prior per-IME settings are not
+migrated automatically.
+
 ## [1.3.1](https://github.com/sonnam0904/vnkey-fcitx5/compare/v1.3.0...v1.3.1) (2026-03-30)
 
 
