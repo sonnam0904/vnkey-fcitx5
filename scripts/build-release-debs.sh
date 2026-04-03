@@ -10,12 +10,12 @@ mkdir -p "${OUT}"
 rm -f "${OUT}"/*.deb
 
 build_native_jammy() {
-  export VNKEY_DEB_PACKAGE_VERSION="${VERSION}+jammy"
-  unset VNKEY_DEB_PACKAGE_SUFFIX || true
-  rm -rf "${ROOT}/vnkey-fcitx/build-deb"
+  export TELEBIT_DEB_PACKAGE_VERSION="${VERSION}+jammy"
+  unset TELEBIT_DEB_PACKAGE_SUFFIX || true
+  rm -rf "${ROOT}/telebit-fcitx5/build-deb"
   bash "${ROOT}/scripts/build-deb.sh"
   shopt -s nullglob
-  for f in "${ROOT}/vnkey-fcitx/build-deb"/*.deb; do
+  for f in "${ROOT}/telebit-fcitx5/build-deb"/*.deb; do
     mv "$f" "${OUT}/"
   done
   shopt -u nullglob
@@ -28,11 +28,11 @@ if ! command -v docker >/dev/null 2>&1; then
   exit 1
 fi
 
-rm -rf "${ROOT}/vnkey-fcitx/build-deb"
+rm -rf "${ROOT}/telebit-fcitx5/build-deb"
 docker run --rm \
   -v "${ROOT}:/src" \
   -w /src \
-  -e "VNKEY_DEB_PACKAGE_VERSION=${VERSION}+noble" \
+  -e "TELEBIT_DEB_PACKAGE_VERSION=${VERSION}+noble" \
   ubuntu:24.04 \
   bash -lc '
     set -euo pipefail
@@ -46,7 +46,7 @@ docker run --rm \
 move_deb_to_release() {
   local f dest
   shopt -s nullglob
-  for f in "${ROOT}/vnkey-fcitx/build-deb"/*.deb; do
+  for f in "${ROOT}/telebit-fcitx5/build-deb"/*.deb; do
     dest="${OUT}/$(basename "$f")"
     if [[ -O "$f" ]]; then
       mv "$f" "$dest"

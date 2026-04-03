@@ -16,7 +16,7 @@
 namespace {
 
 static std::string convert_word(const std::string& word) {
-    using namespace vnkey::internal;
+    using namespace telebit::internal;
 
     if (word.empty()) return word;
 

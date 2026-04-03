@@ -1,6 +1,6 @@
 #include "rime_table.h"
 
-namespace vnkey::internal {
+namespace telebit::internal {
 
 const std::vector<std::string>& getOnsets() {
     static const std::vector<std::string> kOnsets = {
@@ -96,5 +96,5 @@ const std::unordered_map<std::string, int>& getRimeMainVowelTable() {
     return kTable;
 }
 
-}  // namespace vnkey::internal
+}  // namespace telebit::internal
 

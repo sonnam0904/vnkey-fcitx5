@@ -9,7 +9,7 @@
 #include <unordered_set>
 #include <vector>
 
-namespace vnkey::internal {
+namespace telebit::internal {
 
 // Telex tone keys: s=sắc(1), f=huyền(2), r=hỏi(3), x=ngã(4), j=nặng(5). No key = ngang(0).
 static const std::unordered_map<char, int> kToneKey = {
@@ -333,5 +333,5 @@ std::string canonicalizeRimeByTable(const std::string& rimeRaw) {
     return rimeRaw;
 }
 
-}  // namespace vnkey::internal
+}  // namespace telebit::internal
 

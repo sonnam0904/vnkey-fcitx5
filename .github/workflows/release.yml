@@ -34,13 +34,13 @@ jobs:
 
       - name: Build .deb
         env:
-          VNKEY_DEB_PACKAGE_SUFFIX: ${{ matrix.suffix }}
+          TELEBIT_DEB_PACKAGE_SUFFIX: ${{ matrix.suffix }}
         run: bash scripts/build-deb.sh
 
       - uses: actions/upload-artifact@v4
         with:
-          name: vnkey-fcitx5-deb-${{ matrix.suffix }}
-          path: vnkey-fcitx/build-deb/*.deb
+          name: telebit-fcitx5-deb-${{ matrix.suffix }}
+          path: telebit-fcitx5/build-deb/*.deb
 
   package-rpm:
     runs-on: ubuntu-latest
@@ -51,21 +51,21 @@ jobs:
 
       - name: Build RPM via Docker (Fedora)
         env:
-          VNKEY_RPM_PACKAGE_SUFFIX: fedora43
+          TELEBIT_RPM_PACKAGE_SUFFIX: fedora43
         run: |
           docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace \
-            -e VNKEY_RPM_PACKAGE_SUFFIX=${VNKEY_RPM_PACKAGE_SUFFIX} \
+            -e TELEBIT_RPM_PACKAGE_SUFFIX=${TELEBIT_RPM_PACKAGE_SUFFIX} \
             fedora:43 bash -c '
             dnf install -y cmake gcc-c++ make fcitx5-devel extra-cmake-modules git rpm-build
             git config --global --add safe.directory /workspace
             bash scripts/build-rpm.sh
           '
-          sudo chown -R $(id -u):$(id -g) vnkey-fcitx/build-rpm
+          sudo chown -R $(id -u):$(id -g) telebit-fcitx5/build-rpm
 
       - uses: actions/upload-artifact@v4
         with:
-          name: vnkey-fcitx5-rpm-fedora43
-          path: vnkey-fcitx/build-rpm/*.rpm
+          name: telebit-fcitx5-rpm-fedora43
+          path: telebit-fcitx5/build-rpm/*.rpm
 
   release:
     runs-on: ubuntu-22.04

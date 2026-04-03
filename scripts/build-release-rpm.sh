@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build vnkey-fcitx5 .rpm for GitHub Releases, using a semantic-release version.
+# Build telebit-fcitx5 .rpm for GitHub Releases, using a semantic-release version.
 # Usage: build-release-rpm.sh <semver>
 set -euo pipefail
 
@@ -18,8 +18,8 @@ fi
 docker run --rm \
   -v "${ROOT}:/workspace" \
   -w /workspace \
-  -e "VNKEY_PACKAGE_VERSION=${VERSION}" \
-  -e "VNKEY_RPM_PACKAGE_SUFFIX=fedora43" \
+  -e "TELEBIT_PACKAGE_VERSION=${VERSION}" \
+  -e "TELEBIT_RPM_PACKAGE_SUFFIX=fedora43" \
   fedora:43 \
   bash -lc '
     set -euo pipefail
@@ -32,7 +32,7 @@ docker run --rm \
 move_rpm_to_release() {
   local f dest
   shopt -s nullglob
-  for f in "${ROOT}/vnkey-fcitx/build-rpm"/*.rpm; do
+  for f in "${ROOT}/telebit-fcitx5/build-rpm"/*.rpm; do
     dest="${OUT}/$(basename "$f")"
     if [[ -O "$f" ]]; then
       mv "$f" "$dest"

@@ -1,25 +1,25 @@
 #!/usr/bin/env bash
-# Build vnkey-fcitx5 .deb via CPack. Set VNKEY_DEB_PACKAGE_VERSION for Debian package version
+# Build telebit-fcitx5 .deb via CPack. Set TELEBIT_DEB_PACKAGE_VERSION for Debian package version
 # (e.g. semver from semantic-release or 1.2.1+gitabcdef for CI artifacts).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-BUILD_DIR="${ROOT}/vnkey-fcitx/build-deb"
+BUILD_DIR="${ROOT}/telebit-fcitx5/build-deb"
 
-if [[ -z "${VNKEY_DEB_PACKAGE_VERSION:-}" ]]; then
+if [[ -z "${TELEBIT_DEB_PACKAGE_VERSION:-}" ]]; then
   if ver="$(git -C "${ROOT}" describe --tags --long --always 2>/dev/null)"; then
-    export VNKEY_DEB_PACKAGE_VERSION="${ver#v}"
+    export TELEBIT_DEB_PACKAGE_VERSION="${ver#v}"
   else
-    export VNKEY_DEB_PACKAGE_VERSION="0.1.0+git$(git -C "${ROOT}" rev-parse --short HEAD)"
+    export TELEBIT_DEB_PACKAGE_VERSION="0.1.0+git$(git -C "${ROOT}" rev-parse --short HEAD)"
   fi
 fi
 
 # Optional: CI matrix tag (e.g. jammy / noble) appended for unique .deb names.
-if [[ -n "${VNKEY_DEB_PACKAGE_SUFFIX:-}" ]]; then
-  export VNKEY_DEB_PACKAGE_VERSION="${VNKEY_DEB_PACKAGE_VERSION}+${VNKEY_DEB_PACKAGE_SUFFIX}"
+if [[ -n "${TELEBIT_DEB_PACKAGE_SUFFIX:-}" ]]; then
+  export TELEBIT_DEB_PACKAGE_VERSION="${TELEBIT_DEB_PACKAGE_VERSION}+${TELEBIT_DEB_PACKAGE_SUFFIX}"
 fi
 
-cmake -S "${ROOT}/vnkey-fcitx" -B "${BUILD_DIR}" \
+cmake -S "${ROOT}/telebit-fcitx5" -B "${BUILD_DIR}" \
   -DCMAKE_INSTALL_PREFIX=/usr \
   -DCMAKE_BUILD_TYPE=Release
 cmake --build "${BUILD_DIR}"

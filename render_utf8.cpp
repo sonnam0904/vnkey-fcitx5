@@ -5,7 +5,7 @@
 #include <cctype>
 #include <unordered_map>
 
-namespace vnkey::internal {
+namespace telebit::internal {
 
 // Returns the index (in shaped string) of the vowel that should receive the tone mark.
 static int getMainVowelIndex(const std::string& shaped) {
@@ -137,5 +137,5 @@ std::string applyWordCase(const std::string& conv, const std::string& original) 
     return conv;
 }
 
-}  // namespace vnkey::internal
+}  // namespace telebit::internal
 

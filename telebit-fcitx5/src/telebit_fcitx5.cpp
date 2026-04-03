@@ -1,9 +1,9 @@
 /*
- * vnkey - Vietnamese Telex input method for Fcitx5
+ * telebit-fcitx5 - Vietnamese Telex input method for Fcitx5
  * Engine implementation that reuses EngineVietCpp from the core C++ logic.
  */
 
-#include "vnkey.h"
+#include "telebit_fcitx5.h"
 #include "vietnamese.h"
 
 #include <fcitx-config/iniparser.h>
@@ -31,34 +31,34 @@ int utf8CharCount(const std::string &s) {
 
 } // namespace
 
-VnkeyEngine::VnkeyEngine() {
+TelebitFcitx5Engine::TelebitFcitx5Engine() {
     reloadConfig();
 }
 
-void VnkeyEngine::reloadConfig() {
+void TelebitFcitx5Engine::reloadConfig() {
     readAsIni(config_, configFile);
     // Clear state when toggling behavior.
     rollbackClearState();
     engine_.reset();
 }
 
-const Configuration *VnkeyEngine::getConfig() const {
+const Configuration *TelebitFcitx5Engine::getConfig() const {
     return &config_;
 }
 
-void VnkeyEngine::setConfig(const RawConfig &config) {
+void TelebitFcitx5Engine::setConfig(const RawConfig &config) {
     config_.load(config, true);
     safeSaveAsIni(config_, configFile);
     rollbackClearState();
     engine_.reset();
 }
 
-void VnkeyEngine::rollbackClearState() {
+void TelebitFcitx5Engine::rollbackClearState() {
     rollbackRawAscii_.clear();
     rollbackDisplay_.clear();
 }
 
-void VnkeyEngine::updatePreedit(InputContext *ic) {
+void TelebitFcitx5Engine::updatePreedit(InputContext *ic) {
     if (!ic) {
         return;
     }
@@ -79,7 +79,7 @@ void VnkeyEngine::updatePreedit(InputContext *ic) {
     ic->updatePreedit();
 }
 
-void VnkeyEngine::keyEvent(const InputMethodEntry &entry, KeyEvent &keyEvent) {
+void TelebitFcitx5Engine::keyEvent(const InputMethodEntry &entry, KeyEvent &keyEvent) {
     FCITX_UNUSED(entry);
 
     auto *ic = keyEvent.inputContext();
@@ -103,7 +103,7 @@ void VnkeyEngine::keyEvent(const InputMethodEntry &entry, KeyEvent &keyEvent) {
     }
 }
 
-void VnkeyEngine::keyEventPreedit(InputContext *ic, KeyEvent &keyEvent) {
+void TelebitFcitx5Engine::keyEventPreedit(InputContext *ic, KeyEvent &keyEvent) {
     if (keyEvent.isRelease()) {
         return;
     }
@@ -139,7 +139,7 @@ void VnkeyEngine::keyEventPreedit(InputContext *ic, KeyEvent &keyEvent) {
     }
 }
 
-void VnkeyEngine::keyEventDirectRollback(InputContext *ic, KeyEvent &keyEvent) {
+void TelebitFcitx5Engine::keyEventDirectRollback(InputContext *ic, KeyEvent &keyEvent) {
     if (keyEvent.isRelease()) {
         return;
     }
@@ -213,7 +213,7 @@ void VnkeyEngine::keyEventDirectRollback(InputContext *ic, KeyEvent &keyEvent) {
     keyEvent.filterAndAccept();
 }
 
-void VnkeyEngine::reset(const InputMethodEntry &entry, InputContextEvent &event) {
+void TelebitFcitx5Engine::reset(const InputMethodEntry &entry, InputContextEvent &event) {
     FCITX_UNUSED(entry);
     auto *ic = event.inputContext();
     engine_.reset();
@@ -224,5 +224,5 @@ void VnkeyEngine::reset(const InputMethodEntry &entry, InputContextEvent &event)
     }
 }
 
-FCITX_ADDON_FACTORY(VnkeyEngineFactory);
+FCITX_ADDON_FACTORY(TelebitFcitx5EngineFactory);
 

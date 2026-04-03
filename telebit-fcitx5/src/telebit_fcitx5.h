@@ -8,9 +8,9 @@
 
 #include "engine.h"
 
-class VnkeyEngine : public fcitx::InputMethodEngineV2 {
+class TelebitFcitx5Engine : public fcitx::InputMethodEngineV2 {
 public:
-    VnkeyEngine();
+    TelebitFcitx5Engine();
 
     void keyEvent(const fcitx::InputMethodEntry &entry,
                   fcitx::KeyEvent &keyEvent) override;
@@ -24,7 +24,7 @@ public:
 
 private:
     FCITX_CONFIGURATION(
-        VnkeyConfig,
+        TelebitFcitx5Config,
         fcitx::Option<bool> directCommitRollback{
             this,
             "DirectCommitRollback",
@@ -33,11 +33,11 @@ private:
         };
     );
 
-    static constexpr char configFile[] = "conf/vnkey.conf";
+    static constexpr char configFile[] = "conf/telebit-fcitx5.conf";
 
     EngineVietCpp engine_;
 
-    VnkeyConfig config_;
+    TelebitFcitx5Config config_;
 
     // Experimental mode state: raw ASCII typed since last word boundary,
     // and the currently committed display string in the client.
@@ -51,11 +51,11 @@ private:
     void rollbackClearState();
 };
 
-class VnkeyEngineFactory : public fcitx::AddonFactory {
+class TelebitFcitx5EngineFactory : public fcitx::AddonFactory {
 public:
     fcitx::AddonInstance *create(fcitx::AddonManager *manager) override {
         FCITX_UNUSED(manager);
-        return new VnkeyEngine;
+        return new TelebitFcitx5Engine;
     }
 };
 

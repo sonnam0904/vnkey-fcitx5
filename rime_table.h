@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include <vector>
 
-namespace vnkey::internal {
+namespace telebit::internal {
 
 // Internal vowel placeholders used by the Telex engine.
 // A=ă, B=â, E=ê, O=ô, Q=ơ, U=ư.
@@ -18,5 +18,5 @@ const std::vector<std::string>& getOnsets();
 // Key is the shaped rime string starting from the first vowel, e.g. "UQi", "yEt".
 const std::unordered_map<std::string, int>& getRimeMainVowelTable();
 
-}  // namespace vnkey::internal
+}  // namespace telebit::internal
 

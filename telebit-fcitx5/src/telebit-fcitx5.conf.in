@@ -1,8 +1,8 @@
 [InputMethod]
-Name=Vietnamese (Telex) - vnkey
-Icon=vnkey
-Label=VN
+Name=Vietnamese Telex (UTF-8) - Telebit (telebit-fcitx5)
+Icon=telebit-fcitx5
+Label=Tiếng Việt - Telebit
 LangCode=vi
-Addon=vnkey
+Addon=telebit-fcitx5
 Configurable=True
 

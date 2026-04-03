@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Vietnam">
+  <!-- Red field + gold five-pointed star (cờ đỏ sao vàng) -->
+  <rect width="128" height="128" fill="#da251d"/>
+  <!-- Star: cx=64 cy=64, R=28, inner r ≈ R×sin(18°)/sin(54°) -->
+  <path fill="#ffcd00"
+    d="M64 36
+       L70.29 55.35 L90.6 55.35 L74.17 67.16 L80.5 86.65 L64 74.69 L47.5 86.65 L53.84 67.16 L37.4 55.35 L57.71 55.34 Z"/>
+</svg>

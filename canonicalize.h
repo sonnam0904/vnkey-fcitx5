@@ -3,7 +3,7 @@
 #include <string>
 #include <tuple>
 
-namespace vnkey::internal {
+namespace telebit::internal {
 
 // Applies IME escape rules (literal passthrough with collapse). Returns true if triggered.
 bool applyEscapeRules(const std::string& word, const std::string& lower, std::string& outRaw);
@@ -24,5 +24,5 @@ std::string canonicalizeRimeByTable(const std::string& rimeRaw);
 // Converts a raw rime Telex spelling into an internal shaped form (placeholders A/B/E/O/Q/U/D/W).
 std::string applyShapesRime(std::string rimeRaw);
 
-}  // namespace vnkey::internal
+}  // namespace telebit::internal
 

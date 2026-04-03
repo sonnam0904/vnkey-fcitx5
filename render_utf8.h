@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace vnkey::internal {
+namespace telebit::internal {
 
 // Renders one internal vowel placeholder without a tone mark to UTF-8.
 std::string renderVowelNoTone(char v);
@@ -19,5 +19,5 @@ std::string utf8ToUpper(const std::string& s);
 // Applies original word casing (ALLCAPS / Title / lower) to the converted UTF-8 word.
 std::string applyWordCase(const std::string& conv, const std::string& original);
 
-}  // namespace vnkey::internal
+}  // namespace telebit::internal
 
