@@ -11,6 +11,10 @@
   "author": "",
   "license": "ISC",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sonnam0904/telebit.git"
+  },
   "devDependencies": {
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/changelog": "^6.0.3",

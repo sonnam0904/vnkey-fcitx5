@@ -6,23 +6,23 @@
   <p align="center">
     <b>Vietnamese Telex engine — C++ core và addon fcitx5 cho Linux</b>
     <br />
-    <a href="https://github.com/sonnam0904/vnkey-fcitx5"><strong>Xem repository »</strong></a>
+    <a href="https://github.com/sonnam0904/telebit"><strong>Xem repository »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/sonnam0904/vnkey-fcitx5/releases">
-      <img src="https://img.shields.io/github/v/release/sonnam0904/vnkey-fcitx5?style=flat&color=success" alt="Release">
+    <a href="https://github.com/sonnam0904/telebit/releases">
+      <img src="https://img.shields.io/github/v/release/sonnam0904/telebit?style=flat&color=success" alt="Release">
     </a>
-    <a href="https://github.com/sonnam0904/vnkey-fcitx5/blob/main/README.md">
+    <a href="https://github.com/sonnam0904/telebit/blob/main/README.md">
       <img src="https://img.shields.io/badge/docs-README-informational?style=flat" alt="Documentation">
     </a>
-    <a href="https://github.com/sonnam0904/vnkey-fcitx5/stargazers">
-      <img src="https://img.shields.io/github/stars/sonnam0904/vnkey-fcitx5?style=flat&color=yellow" alt="Stars">
+    <a href="https://github.com/sonnam0904/telebit/stargazers">
+      <img src="https://img.shields.io/github/stars/sonnam0904/telebit?style=flat&color=yellow" alt="Stars">
     </a>
-    <a href="https://github.com/sonnam0904/vnkey-fcitx5/network/members">
-      <img src="https://img.shields.io/github/forks/sonnam0904/vnkey-fcitx5?style=flat&color=orange" alt="Forks">
+    <a href="https://github.com/sonnam0904/telebit/network/members">
+      <img src="https://img.shields.io/github/forks/sonnam0904/telebit?style=flat&color=orange" alt="Forks">
     </a>
-    <a href="https://github.com/sonnam0904/vnkey-fcitx5/issues">
-      <img src="https://img.shields.io/github/issues/sonnam0904/vnkey-fcitx5?style=flat&color=red" alt="Issues">
+    <a href="https://github.com/sonnam0904/telebit/issues">
+      <img src="https://img.shields.io/github/issues/sonnam0904/telebit?style=flat&color=red" alt="Issues">
     </a>
   </p>
 
@@ -34,7 +34,7 @@
     <a href="vietnamese.md"><strong>Vietnamese syllable structure</strong></a>
     <br />
     <br />
-    <a href="https://github.com/sonnam0904/vnkey-fcitx5/issues/new">Báo cáo lỗi</a>
+    <a href="https://github.com/sonnam0904/telebit/issues/new">Báo cáo lỗi</a>
   </p>
 </div>
 
@@ -173,7 +173,7 @@ File `.deb` **không nằm trong repo**; mỗi bản được build trên GitHub
 
 | Nguồn | Cách lấy |
 |--------|-----------|
-| **Releases** | [Releases](https://github.com/sonnam0904/vnkey-fcitx5/releases) → mỗi tag thường có **hai** `.deb`: tên gói có hậu tố **`+jammy`** (22.04) hoặc **`+noble`** (24.04) — chọn đúng bản cho máy. |
+| **Releases** | [Releases](https://github.com/sonnam0904/telebit/releases) → mỗi tag thường có **hai** `.deb`: tên gói có hậu tố **`+jammy`** (22.04) hoặc **`+noble`** (24.04) — chọn đúng bản cho máy. |
 | **Artifacts** | Mỗi push `main` có hai ZIP: **`telebit-fcitx5-deb-jammy`** và **`telebit-fcitx5-deb-noble`**. **Actions** → **Release** → run mới nhất → **Artifacts** (giải nén ra `.deb`). |
 
 Tên file dạng `telebit-fcitx5_<phiên-bản>+jammy_amd64.deb` hoặc `…+noble_…`.
@@ -210,7 +210,7 @@ Rồi thêm input method **Telebit** (tìm `telebit-fcitx5`) trong `fcitx5-confi
 File `.rpm` cũng được thiết kế tự động build trên GitHub Actions mỗi khi có bản release mới. Gói này yêu cầu hệ thống phải cài đặt sẵn `fcitx5` (có trong repository chính mặc định của Fedora).
 
 **1. Tải `.rpm`**
-Tương tự file DEB, bạn có thể lấy gói `.rpm` từ tab [Releases](https://github.com/sonnam0904/vnkey-fcitx5/releases) hoặc nhánh **Actions** -> Artifacts. Tên file thường có dạng `telebit-fcitx5-*-fedora43.rpm`.
+Tương tự file DEB, bạn có thể lấy gói `.rpm` từ tab [Releases](https://github.com/sonnam0904/telebit/releases) hoặc nhánh **Actions** -> Artifacts. Tên file thường có dạng `telebit-fcitx5-*-fedora43.rpm`.
 
 **2. Cài đặt (bằng `dnf`)**
 Vào thư mục chứa file vừa tải về và sử dụng `dnf` cài đặt:
@@ -352,10 +352,10 @@ fcitx5 -r
 
 ## ✨ Star History
 
-<a href="https://star-history.com/#sonnam0904/vnkey-fcitx5&Date">
+<a href="https://star-history.com/#sonnam0904/telebit&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=sonnam0904/vnkey-fcitx5&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=sonnam0904/vnkey-fcitx5&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=sonnam0904/vnkey-fcitx5&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=sonnam0904/telebit&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=sonnam0904/telebit&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=sonnam0904/telebit&type=date&legend=top-left" />
  </picture>
 </a>

@@ -19,11 +19,11 @@ set(CPACK_GENERATOR "DEB")
 set(CPACK_PACKAGE_NAME "telebit-fcitx5")
 set(CPACK_PACKAGE_VENDOR "telebit")
 set(CPACK_PACKAGE_VERSION "${_telebit_pkg_ver}")
-set(CPACK_PACKAGE_CONTACT "https://github.com/sonnam0904/vnkey-fcitx5")
+set(CPACK_PACKAGE_CONTACT "https://github.com/sonnam0904/telebit")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Vietnamese Telex input method for fcitx5")
 
 # DEB settings
-set(CPACK_DEBIAN_PACKAGE_MAINTAINER "telebit-fcitx5 <https://github.com/sonnam0904/vnkey-fcitx5>")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "telebit-fcitx5 <https://github.com/sonnam0904/telebit>")
 set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Vietnamese Telex (UTF-8) engine and fcitx5 addon (Telebit). After install, add Telebit in fcitx5-configtool and restart fcitx5.")
 set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "fcitx5, libfcitx5core5 | libfcitx5core7 | libfcitx5core8 | libfcitx5core9 | libfcitx5core10")
