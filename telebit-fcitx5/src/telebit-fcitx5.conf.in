@@ -1,7 +1,7 @@
 [InputMethod]
-Name=Vietnamese Telex (UTF-8) - Telebit (telebit-fcitx5)
+Name=Telebit
 Icon=telebit-fcitx5
-Label=Tiếng Việt - Telebit
+Label=Telebit (Telex)
 LangCode=vi
 Addon=telebit-fcitx5
 Configurable=True

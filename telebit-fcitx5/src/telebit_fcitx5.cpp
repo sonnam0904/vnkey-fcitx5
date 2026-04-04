@@ -29,6 +29,20 @@ int utf8CharCount(const std::string &s) {
     return count;
 }
 
+// Find common prefix length in bytes, stopping only at UTF-8 codepoint boundaries.
+std::size_t commonPrefixBytes(const std::string &s1, const std::string &s2) {
+    std::size_t n = std::min(s1.size(), s2.size());
+    std::size_t i = 0;
+    while (i < n && s1[i] == s2[i]) {
+        ++i;
+    }
+    // Backtrack if we are in the middle of a multi-byte sequence.
+    while (i > 0 && (static_cast<unsigned char>(s1[i]) & 0xC0u) == 0x80u) {
+        --i;
+    }
+    return i;
+}
+
 } // namespace
 
 TelebitFcitx5Engine::TelebitFcitx5Engine() {
@@ -166,15 +180,14 @@ void TelebitFcitx5Engine::keyEventDirectRollback(InputContext *ic, KeyEvent &key
             rollbackRawAscii_.pop_back();
             std::string newDisplay = telex_to_unicode(rollbackRawAscii_);
 
-            if (!rollbackDisplay_.empty()) {
-                int oldChars = utf8CharCount(rollbackDisplay_);
-                if (oldChars > 0) {
-                    ic->deleteSurroundingText(-oldChars,
-                                              static_cast<unsigned int>(oldChars));
-                }
+            std::size_t prefixLen = commonPrefixBytes(rollbackDisplay_, newDisplay);
+            int charsToDelete = utf8CharCount(rollbackDisplay_.substr(prefixLen));
+            if (charsToDelete > 0) {
+                ic->deleteSurroundingText(-charsToDelete,
+                                          static_cast<unsigned int>(charsToDelete));
             }
-            if (!newDisplay.empty()) {
-                ic->commitString(newDisplay);
+            if (newDisplay.size() > prefixLen) {
+                ic->commitString(newDisplay.substr(prefixLen));
             }
 
             rollbackDisplay_ = newDisplay;
@@ -197,15 +210,14 @@ void TelebitFcitx5Engine::keyEventDirectRollback(InputContext *ic, KeyEvent &key
     rollbackRawAscii_.push_back(static_cast<char>(sym));
     std::string newDisplay = telex_to_unicode(rollbackRawAscii_);
 
-    if (!rollbackDisplay_.empty()) {
-        int oldChars = utf8CharCount(rollbackDisplay_);
-        if (oldChars > 0) {
-            ic->deleteSurroundingText(-oldChars,
-                                      static_cast<unsigned int>(oldChars));
-        }
+    std::size_t prefixLen = commonPrefixBytes(rollbackDisplay_, newDisplay);
+    int charsToDelete = utf8CharCount(rollbackDisplay_.substr(prefixLen));
+    if (charsToDelete > 0) {
+        ic->deleteSurroundingText(-charsToDelete,
+                                  static_cast<unsigned int>(charsToDelete));
     }
-    if (!newDisplay.empty()) {
-        ic->commitString(newDisplay);
+    if (newDisplay.size() > prefixLen) {
+        ic->commitString(newDisplay.substr(prefixLen));
     }
     rollbackDisplay_ = newDisplay;
 
