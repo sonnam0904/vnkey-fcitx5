@@ -1,13 +1,13 @@
 Package: telebit
-Version: 2.12.0+jammy
+Version: 2.13.0+jammy
 Architecture: all
 Maintainer: telebit-fcitx5 <https://github.com/sonnam0904/telebit>
 Depends: telebit-fcitx5
-Filename: pool/jammy/main/t/telebit_2.12.0+jammy_all.deb
-Size: 644
-MD5sum: 2589dadf68de97db700b7695c9109472
-SHA1: f81871c78bc59f892a305dd15a90f00cb1a51324
-SHA256: 0e73e3767475c552a01f506aaf9283196f1ff2d659c36bff56e658d8f2401808
+Filename: pool/jammy/main/t/telebit_2.13.0+jammy_all.deb
+Size: 646
+MD5sum: bdc615686f6e74b08c715f550aea51af
+SHA1: 1d8a505fb0b3578ba6ab2cac3907bd65adcf74f4
+SHA256: a1265e4f6b58a9c8a48cfb1309746fa84472df08dee47a0d7a58114be3e0d6cf
 Section: utils
 Priority: optional
 Description: Vietnamese Telex/VNI input method for fcitx5 (metapackage)
@@ -15,17 +15,17 @@ Description: Vietnamese Telex/VNI input method for fcitx5 (metapackage)
  files of its own; it only depends on telebit-fcitx5, the real addon package.
 
 Package: telebit-fcitx5
-Version: 2.12.0+jammy
+Version: 2.13.0+jammy
 Architecture: amd64
 Maintainer: telebit-fcitx5 <https://github.com/sonnam0904/telebit>
-Installed-Size: 1103
+Installed-Size: 1116
 Depends: fcitx5, libfcitx5core5 | libfcitx5core7 | libfcitx5core8 | libfcitx5core9 | libfcitx5core10, libcurl4 | libcurl4t64, libgtk-4-1 | libgtk-4-1t64
 Recommends: wl-clipboard, xclip, fcitx5-configtool
-Filename: pool/jammy/main/t/telebit-fcitx5_2.12.0+jammy_amd64.deb
-Size: 395612
-MD5sum: ff9eb93796234d3af94fbd3f0798501d
-SHA1: a8ca8f5509b108386ecfe99e58c1793b1416b298
-SHA256: fe4ea0b30fd3b7e4e26fca1af6431d6f6f32ae34582c35e072330c127c80b03f
+Filename: pool/jammy/main/t/telebit-fcitx5_2.13.0+jammy_amd64.deb
+Size: 397994
+MD5sum: b34ae21984b0ce0bf64a3cfba123deac
+SHA1: 42f4b74d72c5885fd130c2a42e3956430cbd9093
+SHA256: c701376548e453f8078414ce540ca0dac0ab3cf15497916d43a88754cc639df0
 Section: utils
 Priority: optional
 Description: Vietnamese Telex input method for fcitx5
