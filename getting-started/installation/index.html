@@ -520,9 +520,18 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#store" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cách 2 — COSMIC Store / GNOME Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deb" class="md-nav__link">
     <span class="md-ellipsis">
-      Cách 2 — Gói .deb tải tay
+      Cách 3 — Gói .deb tải tay
     </span>
   </a>
   
@@ -531,7 +540,7 @@
         <li class="md-nav__item">
   <a href="#rpm" class="md-nav__link">
     <span class="md-ellipsis">
-      Cách 3 — Gói .rpm (Fedora/CentOS)
+      Cách 4 — Gói .rpm (Fedora/CentOS)
     </span>
   </a>
   
@@ -540,7 +549,7 @@
         <li class="md-nav__item">
   <a href="#cmake" class="md-nav__link">
     <span class="md-ellipsis">
-      Cách 4 — CMake thủ công
+      Cách 5 — CMake thủ công
     </span>
   </a>
   
@@ -549,7 +558,7 @@
         <li class="md-nav__item">
   <a href="#install-sh" class="md-nav__link">
     <span class="md-ellipsis">
-      Cách 5 — Script install.sh
+      Cách 6 — Script install.sh
     </span>
   </a>
   
@@ -1140,9 +1149,18 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#store" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cách 2 — COSMIC Store / GNOME Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deb" class="md-nav__link">
     <span class="md-ellipsis">
-      Cách 2 — Gói .deb tải tay
+      Cách 3 — Gói .deb tải tay
     </span>
   </a>
   
@@ -1151,7 +1169,7 @@
         <li class="md-nav__item">
   <a href="#rpm" class="md-nav__link">
     <span class="md-ellipsis">
-      Cách 3 — Gói .rpm (Fedora/CentOS)
+      Cách 4 — Gói .rpm (Fedora/CentOS)
     </span>
   </a>
   
@@ -1160,7 +1178,7 @@
         <li class="md-nav__item">
   <a href="#cmake" class="md-nav__link">
     <span class="md-ellipsis">
-      Cách 4 — CMake thủ công
+      Cách 5 — CMake thủ công
     </span>
   </a>
   
@@ -1169,7 +1187,7 @@
         <li class="md-nav__item">
   <a href="#install-sh" class="md-nav__link">
     <span class="md-ellipsis">
-      Cách 5 — Script install.sh
+      Cách 6 — Script install.sh
     </span>
   </a>
   
@@ -1203,7 +1221,7 @@
 
 
 <h1 id="cai-at">Cài đặt<a class="headerlink" href="#cai-at" title="Permanent link">&para;</a></h1>
-<p>Có 6 cách cài. Nếu bạn dùng Ubuntu/Debian, dùng cách đầu tiên.</p>
+<p>Có 7 cách cài. Nếu bạn dùng Ubuntu/Debian, dùng cách đầu tiên.</p>
 <table>
 <thead>
 <tr>
@@ -1216,6 +1234,11 @@
 <tr>
 <td><a href="#apt-repo">APT repo</a></td>
 <td>Ubuntu/Debian — <strong>khuyên dùng</strong></td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><a href="#store">COSMIC Store / GNOME Software</a></td>
+<td>Pop!_OS, Ubuntu — thích bấm chuột hơn gõ lệnh</td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
@@ -1300,7 +1323,28 @@ repo sẽ không có suite tương ứng. Khi đó dùng <a href="#deb"><code>.d
 </div>
 <p>Xong thì sang <a href="../first-use/">Dùng lần đầu</a>.</p>
 <hr />
-<h2 id="deb">Cách 2 — Gói <code>.deb</code> tải tay<a class="headerlink" href="#deb" title="Permanent link">&para;</a></h2>
+<h2 id="store">Cách 2 — COSMIC Store / GNOME Software<a class="headerlink" href="#store" title="Permanent link">&para;</a></h2>
+<p>Sau khi đã thêm APT repo ở <a href="#apt-repo">Cách 1</a>, Telebit hiện ra trong trình
+quản lý ứng dụng đồ hoạ như một app bình thường: mở store, tìm "Telebit", bấm
+Install. Cài xong thì mở <strong>Telebit</strong> từ menu ứng dụng để bật bộ gõ và kiểm tra
+trạng thái.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cần gói <code>appstream</code>, nếu không store sẽ không thấy Telebit</p>
+<p>Store không đọc gói — nó đọc <em>catalog</em> mà <code>apt</code> tải về. Việc tải catalog do
+gói <code>appstream</code> cấu hình, và Pop!_OS/Ubuntu bản desktop đã có sẵn. Nếu
+thiếu, store sẽ không hiện Telebit dù <code>apt install telebit</code> vẫn chạy bình
+thường:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>appstream
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</code></pre></div>
+<p>Nếu vừa thêm repo mà store chưa thấy, ép nó đọc lại catalog:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>appstreamcli<span class="w"> </span>refresh<span class="w"> </span>--force
+</code></pre></div>
+<p>Trên KDE, Discover hiển thị Telebit ở dạng add-on của Fcitx 5 thay vì một
+app riêng.</p>
+</div>
+<hr />
+<h2 id="deb">Cách 3 — Gói <code>.deb</code> tải tay<a class="headerlink" href="#deb" title="Permanent link">&para;</a></h2>
 <p>File <code>.deb</code> <strong>không nằm trong repo source</strong>; mỗi bản được build trên GitHub Actions.</p>
 <p><strong>1. Tải</strong></p>
 <table>
@@ -1324,9 +1368,9 @@ repo sẽ không có suite tương ứng. Khi đó dùng <a href="#deb"><code>.d
 <p>Chọn đúng hậu tố cho bản phân phối của bạn (<code>lsb_release -cs</code> để kiểm tra) — mỗi bản được
 build trên chính release đó nên liên kết với đúng <code>libstdc++</code>/<code>libc</code> tương ứng.</p>
 <p><strong>2. Cài</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>~/Downloads
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>./telebit-fcitx5_*_amd64.deb
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>~/Downloads
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>./telebit-fcitx5_*_amd64.deb
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Bắt buộc có <code>./</code></p>
@@ -1334,44 +1378,44 @@ build trên chính release đó nên liên kết với đúng <code>libstdc++</c
 báo không tìm thấy.</p>
 </div>
 <p>Nếu dùng <code>dpkg</code> và thiếu dependency:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>./telebit-fcitx5_*_amd64.deb
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-f<span class="w"> </span>-y
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>./telebit-fcitx5_*_amd64.deb
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-f<span class="w"> </span>-y
 </code></pre></div>
 <p><strong>3. Khởi động lại fcitx5</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>fcitx5<span class="w"> </span>-r
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>fcitx5<span class="w"> </span>-r
 </code></pre></div>
 <hr />
-<h2 id="rpm">Cách 3 — Gói <code>.rpm</code> (Fedora/CentOS)<a class="headerlink" href="#rpm" title="Permanent link">&para;</a></h2>
+<h2 id="rpm">Cách 4 — Gói <code>.rpm</code> (Fedora/CentOS)<a class="headerlink" href="#rpm" title="Permanent link">&para;</a></h2>
 <p>Gói yêu cầu <code>fcitx5</code> đã có sẵn (nằm trong repo mặc định của Fedora).</p>
 <p>Mỗi bản release có hai <code>.rpm</code> — một cho <strong>Fedora 43</strong> (<code>~fedora43</code>) và một cho <strong>Fedora 44</strong>
 (<code>~fedora44</code>) — vì mỗi bản được build trên chính Fedora đó để khớp <code>libstdc++</code>/<code>fcitx5</code>. Tải bản
 đúng với <code>rpm -E %fedora</code> của bạn từ <a href="https://github.com/sonnam0904/telebit/releases">Releases</a>
 hoặc Actions → Artifacts (<code>telebit-fcitx5-rpm-fedora43</code> / <code>-fedora44</code>), rồi:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>~/Downloads
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>./telebit-fcitx5*.rpm
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>fcitx5<span class="w"> </span>-r
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>~/Downloads
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>./telebit-fcitx5*.rpm
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>fcitx5<span class="w"> </span>-r
 </code></pre></div>
 <hr />
-<h2 id="cmake">Cách 4 — CMake thủ công<a class="headerlink" href="#cmake" title="Permanent link">&para;</a></h2>
+<h2 id="cmake">Cách 5 — CMake thủ công<a class="headerlink" href="#cmake" title="Permanent link">&para;</a></h2>
 <p><strong>Cài dependency trước:</strong></p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu/Debian</label><label for="__tabbed_1_2">Fedora</label><label for="__tabbed_1_3">Arch</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>fcitx5<span class="w"> </span>fcitx5-configtool<span class="w"> </span>fcitx5-config-qt<span class="w"> </span>fcitx5-module-lua<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>libfcitx5core-dev<span class="w"> </span>libfcitx5utils-dev<span class="w"> </span>libcurl4-openssl-dev<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>extra-cmake-modules<span class="w"> </span>cmake<span class="w"> </span>build-essential
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>fcitx5<span class="w"> </span>fcitx5-configtool<span class="w"> </span>fcitx5-config-qt<span class="w"> </span>fcitx5-module-lua<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>libfcitx5core-dev<span class="w"> </span>libfcitx5utils-dev<span class="w"> </span>libcurl4-openssl-dev<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span>libgtk-4-dev<span class="w"> </span>extra-cmake-modules<span class="w"> </span>cmake<span class="w"> </span>build-essential
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>fcitx5<span class="w"> </span>fcitx5-configtool<span class="w"> </span>fcitx5-devel<span class="w"> </span>libcurl-devel<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>gcc-c++<span class="w"> </span>cmake<span class="w"> </span>make<span class="w"> </span>extra-cmake-modules
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>fcitx5<span class="w"> </span>fcitx5-configtool<span class="w"> </span>fcitx5-devel<span class="w"> </span>libcurl-devel<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>gtk4-devel<span class="w"> </span>gcc-c++<span class="w"> </span>cmake<span class="w"> </span>make<span class="w"> </span>extra-cmake-modules
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>--needed<span class="w"> </span>base-devel<span class="w"> </span>cmake<span class="w"> </span>fcitx5<span class="w"> </span>fcitx5-configtool<span class="w"> </span>curl<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>extra-cmake-modules
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>--needed<span class="w"> </span>base-devel<span class="w"> </span>cmake<span class="w"> </span>fcitx5<span class="w"> </span>fcitx5-configtool<span class="w"> </span>curl<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>gtk4<span class="w"> </span>extra-cmake-modules
 </code></pre></div>
 </div>
 </div>
@@ -1380,19 +1424,19 @@ hoặc Actions → Artifacts (<code>telebit-fcitx5-rpm-fedora43</code> / <code>-
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Toàn hệ thống (khuyên dùng)</label><label for="__tabbed_2_2">Chỉ cho user hiện tại</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>telebit-fcitx5
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr<span class="w"> </span>.
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>sudo<span class="w"> </span>cmake<span class="w"> </span>--install<span class="w"> </span>build
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>fcitx5<span class="w"> </span>-r
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>telebit-fcitx5
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr<span class="w"> </span>.
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>sudo<span class="w"> </span>cmake<span class="w"> </span>--install<span class="w"> </span>build
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>fcitx5<span class="w"> </span>-r
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>telebit-fcitx5
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.local"</span><span class="w"> </span>.
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>cmake<span class="w"> </span>--install<span class="w"> </span>build
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>fcitx5<span class="w"> </span>-r
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span>telebit-fcitx5
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.local"</span><span class="w"> </span>.
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>cmake<span class="w"> </span>--install<span class="w"> </span>build
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>fcitx5<span class="w"> </span>-r
 </code></pre></div>
 </div>
 </div>
@@ -1406,11 +1450,11 @@ hoặc Actions → Artifacts (<code>telebit-fcitx5-rpm-fedora43</code> / <code>-
 tự build và chạy fcitx5 từ <code>$HOME/.local</code>.</p>
 </div>
 <hr />
-<h2 id="install-sh">Cách 5 — Script <code>install.sh</code><a class="headerlink" href="#install-sh" title="Permanent link">&para;</a></h2>
+<h2 id="install-sh">Cách 6 — Script <code>install.sh</code><a class="headerlink" href="#install-sh" title="Permanent link">&para;</a></h2>
 <p>Ở thư mục gốc repository:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>./install.sh<span class="w">            </span><span class="c1"># mặc định = --system (PREFIX=/usr, cần sudo)</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>./install.sh<span class="w"> </span>--system
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>./install.sh<span class="w"> </span>--user<span class="w">     </span><span class="c1"># PREFIX=$HOME/.local</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>./install.sh<span class="w">            </span><span class="c1"># mặc định = --system (PREFIX=/usr, cần sudo)</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>./install.sh<span class="w"> </span>--system
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>./install.sh<span class="w"> </span>--user<span class="w">     </span><span class="c1"># PREFIX=$HOME/.local</span>
 </code></pre></div>
 <p>Script sẽ: build core C++ → <strong>chạy bộ test</strong> → build addon → <code>cmake --install</code> theo PREFIX.
 Test fail là script dừng, không cài gì cả.</p>
@@ -1418,6 +1462,9 @@ Test fail là script dừng, không cài gì cả.</p>
 <h2 id="sau-khi-cai">Sau khi cài<a class="headerlink" href="#sau-khi-cai" title="Permanent link">&para;</a></h2>
 <p>Chưa xong đâu — cần bật fcitx5 và thêm input method vào danh sách:
 <strong><a href="../first-use/">Dùng lần đầu</a></strong>.</p>
+<p>Cách nhanh nhất là mở <strong>Telebit</strong> từ menu ứng dụng (hoặc chạy <code>telebit-setup</code>):
+tab <strong>Cài đặt</strong> có nút bật Telebit trong fcitx5 và các tuỳ chọn kiểu gõ, tab
+<strong>Trạng thái</strong> cho biết bộ gõ có thật sự tới được từng ứng dụng hay chưa.</p>
 <div class="admonition tip">
 <p class="admonition-title">Chưa thấy <code>telebit-fcitx5</code> trong danh sách?</p>
 <p>Lần cài đầu tiên thường cần <strong>logout/login</strong> hoặc reboot, vì fcitx5 quét danh sách addon
