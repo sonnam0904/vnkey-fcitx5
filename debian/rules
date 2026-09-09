@@ -10,11 +10,14 @@
 # the ones that get dropped on the way through.
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
+include /usr/share/dpkg/pkg-info.mk
+
 # The addon writes its own Version field from this, and falls back to
 # `git describe` when it is unset — which inside a build chroot means either a
-# failure or a wrong version. Feed it the changelog instead, minus the Debian
-# revision and any repack suffix.
-export TELEBIT_PACKAGE_VERSION = $(shell dpkg-parsechangelog -SVersion | sed -e 's/-[^-]*$$//' -e 's/[+~].*$$//')
+# failure or a wrong version. Feed it the changelog version instead, minus the
+# +ds repack suffix: fcitx5 parses that field with SemanticVersion::parse and
+# silently substitutes its own default when parsing fails.
+export TELEBIT_PACKAGE_VERSION = $(firstword $(subst +, ,$(DEB_VERSION_UPSTREAM)))
 
 %:
 	dh $@ --sourcedirectory=telebit-fcitx5

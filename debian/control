@@ -7,7 +7,7 @@ Priority: optional
 # package rather than a lone upload looking for a sponsor; do not set it
 # without agreeing with the team first (see debian/README.source).
 Maintainer: Debian Input Method Team <debian-input-method@lists.debian.org>
-Uploaders: FIXME Full Name <sonnn.uct@gmail.com>
+Uploaders: Nguyen Nam Son <sonnn.uct@gmail.com>
 Build-Depends:
  cmake (>= 3.21),
  debhelper-compat (= 13),
@@ -21,7 +21,7 @@ Build-Depends:
  libfcitx5utils-dev,
  libgtk-4-dev (>= 4.6),
  pkgconf,
-Standards-Version: 4.7.0
+Standards-Version: 4.7.4
 Rules-Requires-Root: no
 Homepage: https://sonnam0904.github.io/telebit/
 Vcs-Browser: https://salsa.debian.org/input-method-team/fcitx5-telebit

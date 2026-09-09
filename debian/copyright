@@ -13,18 +13,22 @@ Comment: The upstream git tree carries material that has no business in a
     licence to review for no benefit.
   * node_modules/, site/, .venv/ — build products and vendored dependencies of
     the documentation site, not of the software.
+  * docs/dev/debian-submission.md — the maintainer's own notes on this
+    submission, which upstream has since dropped from the repository. It
+    describes the process, not the software.
 Files-Excluded:
  dict/*
  node_modules/*
  site/*
  .venv/*
+ docs/dev/debian-submission.md
 
 Files: *
 Copyright: 2026 sonnam0904
 License: MIT
 
 Files: debian/*
-Copyright: 2026 FIXME Full Name <sonnn.uct@gmail.com>
+Copyright: 2026 Nguyen Nam Son <sonnn.uct@gmail.com>
 License: MIT
 
 License: MIT

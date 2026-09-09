@@ -1,5 +1,5 @@
-fcitx5-telebit (2.11.0+ds-1) UNRELEASED; urgency=medium
+fcitx5-telebit (2.13.0+ds-1) unstable; urgency=medium
 
-  * Initial release. (Closes: #NNNNNN)
+  * Initial release. (Closes: #1147199)
 
- -- FIXME Full Name <sonnn.uct@gmail.com>  Wed, 09 Sep 2026 11:24:37 +0700
+ -- Nguyen Nam Son <sonnn.uct@gmail.com>  Wed, 09 Sep 2026 11:24:37 +0700

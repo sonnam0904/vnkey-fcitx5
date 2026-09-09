@@ -8,4 +8,4 @@ uversionmangle=s/^v//,\
 repacksuffix=+ds,\
 dversionmangle=s/\+ds\d*$//" \
   https://github.com/sonnam0904/telebit/tags \
-  (?:.*?/)?v?(\d[\d.]*)\.tar\.gz debian uupdate
+  (?:.*?/)?v?(\d[\d.]*)\.tar\.gz debian
