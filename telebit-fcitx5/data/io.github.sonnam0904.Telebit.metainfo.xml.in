@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The component every software centre shows. It has to be a desktop-application
+  and not an addon: COSMIC Store keeps only DesktopApplication components when
+  it reads DEP-11 catalogs (src/appstream_cache.rs in pop-os/cosmic-store), so
+  an `addon` component — the shape fcitx5-bamboo ships — is dropped before it
+  ever reaches the UI. The addon component still exists, in
+  io.github.sonnam0904.Telebit.Addon.metainfo.xml, for the centres that do show
+  add-ons under their parent application.
+
+  Configured by CMake: the version and release date come from the same
+  resolution the addon Version field and the CLI report.
+-->
+<component type="desktop-application">
+  <id>io.github.sonnam0904.Telebit</id>
+  <launchable type="desktop-id">io.github.sonnam0904.Telebit.desktop</launchable>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <developer id="io.github.sonnam0904">
+    <name>Telebit</name>
+  </developer>
+
+  <name>Telebit</name>
+  <summary>Vietnamese Telex/VNI input method for fcitx5</summary>
+  <summary xml:lang="vi">Bộ gõ tiếng Việt Telex/VNI cho fcitx5</summary>
+
+  <description>
+    <p>
+      Telebit types Vietnamese with the Telex and VNI layouts on top of fcitx5,
+      so it works in GTK, Qt, Electron and terminal applications alike, and
+      inside Flatpak and Snap sandboxes.
+    </p>
+    <p xml:lang="vi">
+      Telebit là bộ gõ tiếng Việt Telex và VNI chạy trên fcitx5, dùng được trong
+      ứng dụng GTK, Qt, Electron và terminal, kể cả bên trong sandbox Flatpak và
+      Snap.
+    </p>
+    <p>
+      Installing this brings in the fcitx5 engine itself. The window it opens,
+      Telebit Setup, reports whether the input method is actually reaching your
+      applications — the environment the graphical session handed out, which
+      compositor is running, and what each sandbox can see — and tells you what
+      to fix when it is not.
+    </p>
+    <p xml:lang="vi">
+      Cài mục này là cài luôn engine cho fcitx5. Cửa sổ Telebit Setup cho biết bộ
+      gõ có thật sự tới được các ứng dụng hay không — môi trường mà phiên đồ hoạ
+      phát ra, compositor đang chạy, và những gì từng sandbox nhìn thấy — kèm
+      hướng dẫn sửa khi chưa được.
+    </p>
+    <p>Features:</p>
+    <p xml:lang="vi">Tính năng:</p>
+    <ul>
+      <li>Telex and VNI, with tone placement following modern Vietnamese orthography</li>
+      <li xml:lang="vi">Telex và VNI, đặt dấu theo chính tả tiếng Việt hiện đại</li>
+      <li>Spell checking against a Vietnamese syllable dictionary</li>
+      <li xml:lang="vi">Kiểm tra chính tả dựa trên từ điển âm tiết tiếng Việt</li>
+      <li>User-defined macros</li>
+      <li xml:lang="vi">Gõ tắt do người dùng tự định nghĩa</li>
+      <li>Diagnostics for sandboxed applications that other tools cannot see into</li>
+      <li xml:lang="vi">Chẩn đoán được cả ứng dụng trong sandbox, chỗ mà công cụ khác không nhìn tới</li>
+    </ul>
+  </description>
+
+  <categories>
+    <category>Utility</category>
+    <category>Settings</category>
+  </categories>
+
+  <keywords>
+    <keyword>Vietnamese</keyword>
+    <keyword>Telex</keyword>
+    <keyword>VNI</keyword>
+    <keyword>input method</keyword>
+    <keyword>fcitx5</keyword>
+    <keyword xml:lang="vi">tiếng Việt</keyword>
+    <keyword xml:lang="vi">bộ gõ</keyword>
+  </keywords>
+
+  <!-- Absolute URLs are the only kind AppStream accepts, and they have to
+       outlive the release: this points at the published docs site (mkdocs
+       copies docs/img/ into it) rather than at a raw blob of one commit. A
+       listing with no screenshot reads as abandoned in every store. -->
+  <screenshots>
+    <screenshot type="default">
+      <caption>Telebit Setup: switch the input method on and choose Telex or VNI</caption>
+      <caption xml:lang="vi">Cửa sổ Telebit: bật bộ gõ và chọn kiểu gõ Telex hoặc VNI</caption>
+      <image type="source" width="820" height="760">https://sonnam0904.github.io/telebit/img/telebit-setup.png</image>
+    </screenshot>
+  </screenshots>
+
+  <url type="homepage">https://sonnam0904.github.io/telebit/</url>
+  <url type="bugtracker">https://github.com/sonnam0904/telebit/issues</url>
+  <url type="help">https://sonnam0904.github.io/telebit/getting-started/first-use/</url>
+  <url type="vcs-browser">https://github.com/sonnam0904/telebit</url>
+
+  <provides>
+    <binary>telebit</binary>
+    <binary>telebit-setup</binary>
+  </provides>
+
+  <!-- Recommends, not requires: typing Vietnamese wants a keyboard, but a
+       `requires` relation lets a store hide the entry outright on a device
+       that reports none, which is the wrong answer for an input method. -->
+  <recommends>
+    <control>keyboard</control>
+  </recommends>
+
+  <content_rating type="oars-1.1"/>
+@TELEBIT_METAINFO_RELEASES@
+</component>

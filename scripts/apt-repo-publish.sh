@@ -35,6 +35,18 @@ for f in "${DEB_FILES[@]}"; do
   cp -f "$f" "${POOL_DIR}/"
 done
 
+# AppStream catalog for the software centres, generated BEFORE the Release
+# file below: `apt-ftparchive release` walks the whole dists/<suite> tree and
+# hashes whatever it finds, so the dep11 files have to already exist or apt
+# rejects them as unlisted. Components=main in the Release call below is what
+# points apt at main/dep11/.
+#
+# A hard failure on purpose: without this, the .debs still install perfectly
+# and Telebit silently disappears from COSMIC Store and GNOME Software, which
+# is not a difference anyone notices in a release check.
+python3 "$(dirname "${BASH_SOURCE[0]}")/dep11-generate.py" \
+  "${REPO_DIR}" "${SUITE}" "${DEB_FILES[@]}"
+
 cd "${REPO_DIR}"
 
 dpkg-scanpackages --arch amd64 "pool/${SUITE}" > "${BINARY_DIR}/Packages"

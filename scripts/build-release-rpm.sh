@@ -66,7 +66,7 @@ build_in_docker() {
       # build writes lands on the host owned by root. Hand the build dir back on
       # the way out, or the next target gets "Permission denied" on its rm -rf.
       trap "chown -R ${HOST_UID}:${HOST_GID} telebit-fcitx5/build-rpm 2>/dev/null || true" EXIT
-      dnf install -y cmake gcc-c++ make fcitx5-devel extra-cmake-modules git rpm-build libcurl-devel
+      dnf install -y cmake gcc-c++ make fcitx5-devel extra-cmake-modules git rpm-build libcurl-devel gtk4-devel pkgconf-pkg-config
       git config --global --add safe.directory /workspace
       bash scripts/build-rpm.sh
     '

@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Telebit
+GenericName=Vietnamese Input Method
+GenericName[vi]=Bộ gõ tiếng Việt
+Comment=Check and configure the Telebit Vietnamese input method
+Comment[vi]=Kiểm tra và cấu hình bộ gõ tiếng Việt Telebit
+Exec=@CMAKE_INSTALL_FULL_BINDIR@/telebit-setup
+Icon=io.github.sonnam0904.Telebit
+Terminal=false
+Categories=Utility;
+Keywords=Vietnamese;Telex;VNI;input method;fcitx5;
+Keywords[vi]=tiếng Việt;bộ gõ;telex;vni;
+StartupNotify=true
+StartupWMClass=telebit-setup

@@ -57,7 +57,7 @@ jobs:
         if: matrix.image == ''
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends build-essential cmake pkg-config libfcitx5core-dev libcurl4-openssl-dev
+          sudo apt-get install -y --no-install-recommends build-essential cmake pkg-config libfcitx5core-dev libcurl4-openssl-dev libgtk-4-dev
 
       - name: Build .deb (native)
         if: matrix.image == ''
@@ -80,7 +80,7 @@ jobs:
               set -euo pipefail
               apt-get update -qq
               DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-                git ca-certificates build-essential cmake pkg-config libfcitx5core-dev libcurl4-openssl-dev
+                git ca-certificates build-essential cmake pkg-config libfcitx5core-dev libcurl4-openssl-dev libgtk-4-dev
               git config --global --add safe.directory /src
               bash scripts/build-deb.sh
             '
@@ -113,7 +113,7 @@ jobs:
           docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace \
             -e TELEBIT_RPM_PACKAGE_SUFFIX=${{ matrix.suffix }} \
             ${{ matrix.image }} bash -c '
-            dnf install -y cmake gcc-c++ make fcitx5-devel extra-cmake-modules git rpm-build libcurl-devel
+            dnf install -y cmake gcc-c++ make fcitx5-devel extra-cmake-modules git rpm-build libcurl-devel gtk4-devel pkgconf-pkg-config
             git config --global --add safe.directory /workspace
             bash scripts/build-rpm.sh
           '
@@ -132,10 +132,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      # appstream + librsvg2-bin are for scripts/dep11-generate.py, which
+      # apt-repo-publish.sh runs: appstreamcli converts the catalog to DEP-11
+      # YAML and rsvg-convert rasterizes the app icon into the icon tarballs.
+      # Without them the publish step fails loudly, which is the point — a
+      # repo published without dep11 data is a repo no software centre shows.
       - name: Install build dependencies (jammy .deb + host tools)
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends build-essential cmake pkg-config libfcitx5core-dev libcurl4-openssl-dev
+          sudo apt-get install -y --no-install-recommends build-essential cmake pkg-config libfcitx5core-dev libcurl4-openssl-dev libgtk-4-dev appstream librsvg2-bin
 
       # No `version:` here on purpose — action-setup reads the pnpm version from
       # the "packageManager" field in package.json, so local and CI can't drift.

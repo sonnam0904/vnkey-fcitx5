@@ -19,7 +19,9 @@
 #pragma once
 
 #include <cstddef>
+#include <functional>
 #include <iosfwd>
+#include <string>
 
 #include "verdict.h"
 
@@ -32,6 +34,15 @@ struct Options {
     // Plain, colourless output shaped for pasting into a bug report.
     bool markdown = false;
 };
+
+// Where a slow step announces itself. The CLI writes these to stderr; a GUI
+// puts them on a status line. Called from whichever thread runs collect().
+using ProgressFn = std::function<void(const std::string &)>;
+
+// Probe the system and judge it, returning the report the renderers consume.
+// Prints nothing and touches no terminal, so a GUI can call it off the main
+// thread and draw the rows itself instead of parsing rendered text.
+Output collect(const Options &options, const ProgressFn &progress = {});
 
 // Returns a process exit status: 0 when nothing failed, 1 when at least one
 // check did, so the command composes in scripts.

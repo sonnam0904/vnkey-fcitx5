@@ -205,18 +205,18 @@ sudo apt update
 sudo apt install -y \
   fcitx5 fcitx5-configtool fcitx5-config-qt fcitx5-module-lua \
   libfcitx5core-dev libfcitx5utils-dev libcurl4-openssl-dev \
-  extra-cmake-modules cmake build-essential
+  libgtk-4-dev extra-cmake-modules cmake build-essential
 
 # Fedora
 sudo dnf install -y fcitx5 fcitx5-configtool fcitx5-devel libcurl-devel \
-  gcc-c++ cmake make extra-cmake-modules
+  gtk4-devel gcc-c++ cmake make extra-cmake-modules
 
 # Arch
 sudo pacman -S --needed base-devel cmake extra-cmake-modules \
-  fcitx5 fcitx5-configtool curl
+  fcitx5 fcitx5-configtool curl gtk4
 ```
 
-Yêu cầu: compiler **C++17**, **CMake ≥ 3.21**, header phát triển của **fcitx5** và **libcurl** (libcurl dùng cho trợ lý AI).
+Yêu cầu: compiler **C++17**, **CMake ≥ 3.21**, header phát triển của **fcitx5** và **libcurl** (libcurl dùng cho trợ lý AI), và **GTK4 ≥ 4.6** cho cửa sổ `telebit-setup`. Không có GTK4 thì thêm `-DTELEBIT_BUILD_GUI=OFF` để build phần còn lại (`install.sh` tự làm việc này).
 
 **2a. Cách nhanh — script `install.sh`**
 

@@ -80,6 +80,23 @@ jobs:
               missing=1
             fi
           done
+          # The dep11 catalogs are what software centres read. Losing one
+          # breaks Telebit's COSMIC Store / GNOME Software listing while
+          # `apt install` keeps working, so nothing else here would notice.
+          # Checked only for suites whose Release already references dep11, so
+          # this passes on a repo published before dep11 existed and starts
+          # enforcing itself the moment a release adds it.
+          for suite in jammy noble; do
+            rel="gh-pages/dists/${suite}/Release"
+            catalog="gh-pages/dists/${suite}/main/dep11/Components-amd64.yml.gz"
+            if [[ -f "${rel}" ]] && grep -q "dep11/Components-amd64.yml.gz" "${rel}"; then
+              if [[ ! -f "${catalog}" ]]; then
+                echo "FATAL: ${suite}'s Release lists a dep11 catalog that is gone" >&2
+                missing=1
+              fi
+            fi
+          done
+
           shopt -s nullglob
           debs=(gh-pages/pool/*/main/*/*.deb)
           shopt -u nullglob

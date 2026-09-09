@@ -210,7 +210,7 @@ void render_markdown(const Output &out, std::ostream &os) {
     os << "\n_Locale và cấu hình chi tiết của fcitx5 do `fcitx5-diagnose` phụ trách._\n";
 }
 
-int run(const Options &options) {
+Output collect(const Options &options, const ProgressFn &progress) {
     Report report;
     report.session = probe_session();
     report.host = probe_host();
@@ -222,7 +222,9 @@ int run(const Options &options) {
     probe_flatpak(report);
     probe_snap(report);
     if (options.deep) {
-        std::cerr << "Đang vào từng sandbox để đọc môi trường thật, việc này mất một lúc...\n";
+        if (progress) {
+            progress("Đang vào từng sandbox để đọc môi trường thật, việc này mất một lúc...");
+        }
         probe_sandbox_env(report);
     }
     report.fcitx5 = probe_fcitx5();
@@ -241,6 +243,14 @@ int run(const Options &options) {
             "Chạy `telebit doctor --deep` để đọc môi trường thật bên trong từng sandbox "
             "(chậm hơn, nhưng thấy được cả override riêng của từng ứng dụng).");
     }
+
+    return out;
+}
+
+int run(const Options &options) {
+    const Output out = collect(options, [](const std::string &message) {
+        std::cerr << message << "\n";
+    });
 
     if (options.markdown) render_markdown(out, std::cout);
     else render_pretty(out, std::cout, ::isatty(STDOUT_FILENO) != 0, terminal_width());

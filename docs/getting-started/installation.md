@@ -1,10 +1,11 @@
 # Cài đặt
 
-Có 6 cách cài. Nếu bạn dùng Ubuntu/Debian, dùng cách đầu tiên.
+Có 7 cách cài. Nếu bạn dùng Ubuntu/Debian, dùng cách đầu tiên.
 
 | Cách | Phù hợp khi | Tự cập nhật |
 |---|---|:---:|
 | [APT repo](#apt-repo) | Ubuntu/Debian — **khuyên dùng** | ✅ |
+| [COSMIC Store / GNOME Software](#store) | Pop!_OS, Ubuntu — thích bấm chuột hơn gõ lệnh | ✅ |
 | [Nhờ AI agent](install-with-ai-agent.md) | Không chắc distro của mình; đã dùng Claude Code / Codex / Gemini | tuỳ cách agent chọn |
 | [Gói `.deb`](#deb) | Ubuntu/Debian, tải tay | ❌ |
 | [Gói `.rpm`](#rpm) | Fedora/CentOS | ❌ |
@@ -52,7 +53,37 @@ Xong thì sang [Dùng lần đầu](first-use.md).
 
 ---
 
-## Cách 2 — Gói `.deb` tải tay { #deb }
+## Cách 2 — COSMIC Store / GNOME Software { #store }
+
+Sau khi đã thêm APT repo ở [Cách 1](#apt-repo), Telebit hiện ra trong trình
+quản lý ứng dụng đồ hoạ như một app bình thường: mở store, tìm "Telebit", bấm
+Install. Cài xong thì mở **Telebit** từ menu ứng dụng để bật bộ gõ và kiểm tra
+trạng thái.
+
+!!! warning "Cần gói `appstream`, nếu không store sẽ không thấy Telebit"
+
+    Store không đọc gói — nó đọc *catalog* mà `apt` tải về. Việc tải catalog do
+    gói `appstream` cấu hình, và Pop!_OS/Ubuntu bản desktop đã có sẵn. Nếu
+    thiếu, store sẽ không hiện Telebit dù `apt install telebit` vẫn chạy bình
+    thường:
+
+    ```bash
+    sudo apt install appstream
+    sudo apt update
+    ```
+
+    Nếu vừa thêm repo mà store chưa thấy, ép nó đọc lại catalog:
+
+    ```bash
+    sudo appstreamcli refresh --force
+    ```
+
+    Trên KDE, Discover hiển thị Telebit ở dạng add-on của Fcitx 5 thay vì một
+    app riêng.
+
+---
+
+## Cách 3 — Gói `.deb` tải tay { #deb }
 
 File `.deb` **không nằm trong repo source**; mỗi bản được build trên GitHub Actions.
 
@@ -94,7 +125,7 @@ fcitx5 -r
 
 ---
 
-## Cách 3 — Gói `.rpm` (Fedora/CentOS) { #rpm }
+## Cách 4 — Gói `.rpm` (Fedora/CentOS) { #rpm }
 
 Gói yêu cầu `fcitx5` đã có sẵn (nằm trong repo mặc định của Fedora).
 
@@ -111,7 +142,7 @@ fcitx5 -r
 
 ---
 
-## Cách 4 — CMake thủ công { #cmake }
+## Cách 5 — CMake thủ công { #cmake }
 
 **Cài dependency trước:**
 
@@ -122,21 +153,21 @@ fcitx5 -r
     sudo apt install -y \
       fcitx5 fcitx5-configtool fcitx5-config-qt fcitx5-module-lua \
       libfcitx5core-dev libfcitx5utils-dev libcurl4-openssl-dev \
-      extra-cmake-modules cmake build-essential
+      libgtk-4-dev extra-cmake-modules cmake build-essential
     ```
 
 === "Fedora"
 
     ```bash
     sudo dnf install -y fcitx5 fcitx5-configtool fcitx5-devel libcurl-devel \
-      gcc-c++ cmake make extra-cmake-modules
+      gtk4-devel gcc-c++ cmake make extra-cmake-modules
     ```
 
 === "Arch"
 
     ```bash
     sudo pacman -S --needed base-devel cmake fcitx5 fcitx5-configtool curl \
-      extra-cmake-modules
+      gtk4 extra-cmake-modules
     ```
 
 **Build và cài:**
@@ -172,7 +203,7 @@ fcitx5 -r
 
 ---
 
-## Cách 5 — Script `install.sh` { #install-sh }
+## Cách 6 — Script `install.sh` { #install-sh }
 
 Ở thư mục gốc repository:
 
@@ -191,6 +222,10 @@ Test fail là script dừng, không cài gì cả.
 
 Chưa xong đâu — cần bật fcitx5 và thêm input method vào danh sách:
 **[Dùng lần đầu](first-use.md)**.
+
+Cách nhanh nhất là mở **Telebit** từ menu ứng dụng (hoặc chạy `telebit-setup`):
+tab **Cài đặt** có nút bật Telebit trong fcitx5 và các tuỳ chọn kiểu gõ, tab
+**Trạng thái** cho biết bộ gõ có thật sự tới được từng ứng dụng hay chưa.
 
 !!! tip "Chưa thấy `telebit-fcitx5` trong danh sách?"
 

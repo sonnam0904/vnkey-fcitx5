@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The fcitx5 input-method engine as an add-on of Fcitx 5, the same shape
+  fcitx5-bamboo and fcitx5-unikey ship. COSMIC Store drops addon components
+  read from DEP-11 and will never show this one; GNOME Software and KDE
+  Discover list it under the Fcitx 5 page. The store-facing component is
+  io.github.sonnam0904.Telebit.
+-->
+<component type="addon">
+  <id>io.github.sonnam0904.Telebit.Addon</id>
+  <extends>org.fcitx.Fcitx5</extends>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <developer id="io.github.sonnam0904">
+    <name>Telebit</name>
+  </developer>
+
+  <name>Telebit</name>
+  <summary>Vietnamese Telex/VNI input method</summary>
+  <summary xml:lang="vi">Bộ gõ tiếng Việt Telex/VNI</summary>
+
+  <url type="homepage">https://sonnam0904.github.io/telebit/</url>
+  <url type="bugtracker">https://github.com/sonnam0904/telebit/issues</url>
+</component>

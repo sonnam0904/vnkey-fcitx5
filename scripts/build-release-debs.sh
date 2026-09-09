@@ -80,7 +80,7 @@ build_in_docker() {
       trap "chown -R ${HOST_UID}:${HOST_GID} telebit-fcitx5/build-deb 2>/dev/null || true" EXIT
       apt-get update -qq
       DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        git ca-certificates build-essential cmake pkg-config libfcitx5core-dev libcurl4-openssl-dev
+        git ca-certificates build-essential cmake pkg-config libfcitx5core-dev libcurl4-openssl-dev libgtk-4-dev
       bash scripts/build-deb.sh
     '
   move_deb_to_release
