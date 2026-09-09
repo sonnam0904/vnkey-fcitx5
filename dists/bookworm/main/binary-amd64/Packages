@@ -1,13 +1,13 @@
 Package: telebit
-Version: 2.11.0+bookworm
+Version: 2.12.0+bookworm
 Architecture: all
 Maintainer: telebit-fcitx5 <https://github.com/sonnam0904/telebit>
 Depends: telebit-fcitx5
-Filename: pool/bookworm/main/t/telebit_2.11.0+bookworm_all.deb
-Size: 648
-MD5sum: 49a045d0b248017dbb068e6333a10978
-SHA1: 73ba349c3015d49cfb2c361edba264297d835a43
-SHA256: 46cc2084620df62b0c71ba1c9e7d21f7c3802edb6cfaca5837cf6146c1e88f28
+Filename: pool/bookworm/main/t/telebit_2.12.0+bookworm_all.deb
+Size: 646
+MD5sum: 77035d874b89f8fad0967d3a2415d638
+SHA1: 33594bbfe57b88598546b6abc725ad40db631104
+SHA256: ad9f0351deaf17341e72cc52238042ac890334893998acab7451ffc7b66d335d
 Section: utils
 Priority: optional
 Description: Vietnamese Telex/VNI input method for fcitx5 (metapackage)
@@ -15,17 +15,17 @@ Description: Vietnamese Telex/VNI input method for fcitx5 (metapackage)
  files of its own; it only depends on telebit-fcitx5, the real addon package.
 
 Package: telebit-fcitx5
-Version: 2.11.0+bookworm
+Version: 2.12.0+bookworm
 Architecture: amd64
 Maintainer: telebit-fcitx5 <https://github.com/sonnam0904/telebit>
-Installed-Size: 701
-Depends: fcitx5, libfcitx5core5 | libfcitx5core7 | libfcitx5core8 | libfcitx5core9 | libfcitx5core10, libcurl4 | libcurl4t64
-Recommends: wl-clipboard, xclip
-Filename: pool/bookworm/main/t/telebit-fcitx5_2.11.0+bookworm_amd64.deb
-Size: 246172
-MD5sum: 5ae78614618adb24f852b31edda775fd
-SHA1: c99b5d5c50d756d16d5db8771e797e6ce67cda0f
-SHA256: 8d679bc3a7714cbeb55b0dfd42e4a31b4441f755813b35c76aed7ac45cba992f
+Installed-Size: 1096
+Depends: fcitx5, libfcitx5core5 | libfcitx5core7 | libfcitx5core8 | libfcitx5core9 | libfcitx5core10, libcurl4 | libcurl4t64, libgtk-4-1 | libgtk-4-1t64
+Recommends: wl-clipboard, xclip, fcitx5-configtool
+Filename: pool/bookworm/main/t/telebit-fcitx5_2.12.0+bookworm_amd64.deb
+Size: 395876
+MD5sum: 0aee88365392f86ba907fec48bcc1d63
+SHA1: abbd9c57a925a6bba65d78707106acfaea67b898
+SHA256: 8282da44a1812be7454049ccf8757c92c9c6b1d66b4ef8ce2705b7473a5de3ce
 Section: utils
 Priority: optional
 Description: Vietnamese Telex input method for fcitx5

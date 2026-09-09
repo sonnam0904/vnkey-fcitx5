@@ -1,0 +1,118 @@
+---
+File: DEP-11
+Version: '0.14'
+Origin: telebit-trixie-main
+---
+Type: addon
+ID: io.github.sonnam0904.Telebit.Addon
+Package: telebit-fcitx5
+Extends:
+- org.fcitx.Fcitx5
+Name:
+  C: Telebit
+Summary:
+  C: Vietnamese Telex/VNI input method
+  vi: Bộ gõ tiếng Việt Telex/VNI
+ProjectLicense: MIT
+Url:
+  homepage: https://sonnam0904.github.io/telebit/
+  bugtracker: https://github.com/sonnam0904/telebit/issues
+---
+Type: desktop-application
+ID: io.github.sonnam0904.Telebit
+Package: telebit-fcitx5
+Name:
+  C: Telebit
+Summary:
+  C: Vietnamese Telex/VNI input method for fcitx5
+  vi: Bộ gõ tiếng Việt Telex/VNI cho fcitx5
+Description:
+  C: >-
+    <p>
+          Telebit types Vietnamese with the Telex and VNI layouts on top of fcitx5,
+          so it works in GTK, Qt, Electron and terminal applications alike, and
+          inside Flatpak and Snap sandboxes.
+        </p>
+    <p>
+          Installing this brings in the fcitx5 engine itself. The window it opens,
+          Telebit Setup, reports whether the input method is actually reaching your
+          applications — the environment the graphical session handed out, which
+          compositor is running, and what each sandbox can see — and tells you what
+          to fix when it is not.
+        </p>
+    <p>Features:</p>
+
+    <ul><li>Telex and VNI, with tone placement following modern Vietnamese orthography</li><li>Spell checking against a Vietnamese
+    syllable dictionary</li><li>User-defined macros</li><li>Diagnostics for sandboxed applications that other tools cannot
+    see into</li></ul>
+  vi: >-
+    <p>
+          Telebit là bộ gõ tiếng Việt Telex và VNI chạy trên fcitx5, dùng được trong
+          ứng dụng GTK, Qt, Electron và terminal, kể cả bên trong sandbox Flatpak và
+          Snap.
+        </p>
+    <p>
+          Cài mục này là cài luôn engine cho fcitx5. Cửa sổ Telebit Setup cho biết bộ
+          gõ có thật sự tới được các ứng dụng hay không — môi trường mà phiên đồ hoạ
+          phát ra, compositor đang chạy, và những gì từng sandbox nhìn thấy — kèm
+          hướng dẫn sửa khi chưa được.
+        </p>
+    <p>Tính năng:</p>
+
+    <ul><li>Telex và VNI, đặt dấu theo chính tả tiếng Việt hiện đại</li><li>Kiểm tra chính tả dựa trên từ điển âm tiết tiếng
+    Việt</li><li>Gõ tắt do người dùng tự định nghĩa</li><li>Chẩn đoán được cả ứng dụng trong sandbox, chỗ mà công cụ khác
+    không nhìn tới</li></ul>
+ProjectLicense: MIT
+Categories:
+- Utility
+- Settings
+Keywords:
+  C:
+  - Vietnamese
+  - Telex
+  - VNI
+  - input method
+  - fcitx5
+  vi:
+  - tiếng Việt
+  - bộ gõ
+Url:
+  homepage: https://sonnam0904.github.io/telebit/
+  bugtracker: https://github.com/sonnam0904/telebit/issues
+  help: https://sonnam0904.github.io/telebit/getting-started/first-use/
+Icon:
+  cached:
+  - name: telebit-fcitx5_io.github.sonnam0904.Telebit.png
+    width: 48
+    height: 48
+  - name: telebit-fcitx5_io.github.sonnam0904.Telebit.png
+    width: 64
+    height: 64
+  - name: telebit-fcitx5_io.github.sonnam0904.Telebit.png
+    width: 64
+    height: 64
+    scale: 2
+  - name: telebit-fcitx5_io.github.sonnam0904.Telebit.png
+    width: 128
+    height: 128
+Launchable:
+  desktop-id:
+  - io.github.sonnam0904.Telebit.desktop
+Provides:
+  binaries:
+  - telebit
+  - telebit-setup
+Screenshots:
+- default: true
+  caption:
+    C: 'Telebit Setup: switch the input method on and choose Telex or VNI'
+    vi: 'Cửa sổ Telebit: bật bộ gõ và chọn kiểu gõ Telex hoặc VNI'
+  thumbnails: []
+  source-image:
+    url: https://sonnam0904.github.io/telebit/img/telebit-setup.png
+    width: 820
+    height: 760
+ContentRating:
+  oars-1.1: {}
+Recommends:
+- control: keyboard

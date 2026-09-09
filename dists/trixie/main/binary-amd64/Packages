@@ -1,13 +1,13 @@
 Package: telebit
-Version: 2.11.0+trixie
+Version: 2.12.0+trixie
 Architecture: all
 Maintainer: telebit-fcitx5 <https://github.com/sonnam0904/telebit>
 Depends: telebit-fcitx5
-Filename: pool/trixie/main/t/telebit_2.11.0+trixie_all.deb
-Size: 646
-MD5sum: 91aa1ffdf9551a215a01730bb4c92798
-SHA1: b2a6291d8dbb2203acdb497a87ccfa6eb84d4b42
-SHA256: 82a4b899ba39d8b86bfba02239ccefcdbbce489c1e7ad49977443f7cc11a8bdb
+Filename: pool/trixie/main/t/telebit_2.12.0+trixie_all.deb
+Size: 644
+MD5sum: aa7fe46ee613f5c19cc5250132155d9c
+SHA1: 50efd8c6f4e5932350c57a3c7b20b5d3b6375a44
+SHA256: 6614eb2e49246cecb8ea9ccb4f1b38ac644dc810dd011510cca994e6a3c99a52
 Section: utils
 Priority: optional
 Description: Vietnamese Telex/VNI input method for fcitx5 (metapackage)
@@ -15,17 +15,17 @@ Description: Vietnamese Telex/VNI input method for fcitx5 (metapackage)
  files of its own; it only depends on telebit-fcitx5, the real addon package.
 
 Package: telebit-fcitx5
-Version: 2.11.0+trixie
+Version: 2.12.0+trixie
 Architecture: amd64
 Maintainer: telebit-fcitx5 <https://github.com/sonnam0904/telebit>
-Installed-Size: 711
-Depends: fcitx5, libfcitx5core5 | libfcitx5core7 | libfcitx5core8 | libfcitx5core9 | libfcitx5core10, libcurl4 | libcurl4t64
-Recommends: wl-clipboard, xclip
-Filename: pool/trixie/main/t/telebit-fcitx5_2.11.0+trixie_amd64.deb
-Size: 261618
-MD5sum: 1f4988fa0fa499563f2bb9f1ca640f6c
-SHA1: 35d97c57d71ba92b07c0bad105864484a2820c15
-SHA256: ceaaf70026981cf9bccfccc76388bc5a7795fc6afb39417f1e46c20df14899b3
+Installed-Size: 1104
+Depends: fcitx5, libfcitx5core5 | libfcitx5core7 | libfcitx5core8 | libfcitx5core9 | libfcitx5core10, libcurl4 | libcurl4t64, libgtk-4-1 | libgtk-4-1t64
+Recommends: wl-clipboard, xclip, fcitx5-configtool
+Filename: pool/trixie/main/t/telebit-fcitx5_2.12.0+trixie_amd64.deb
+Size: 422598
+MD5sum: 4a93558e300452b51db064d8d5eaa4fa
+SHA1: 77cc435b492b0354135081ff7bccc9bffedd5420
+SHA256: fec02410f26ba970e0c83533a69d64f6f30d7bdc3fcbd315f494add335d13e42
 Section: utils
 Priority: optional
 Description: Vietnamese Telex input method for fcitx5
