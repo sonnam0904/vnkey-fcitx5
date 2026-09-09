@@ -1,3 +1,10 @@
+# [2.13.0](https://github.com/sonnam0904/telebit/compare/v2.12.0...v2.13.0) (2026-09-09)
+
+
+### Features
+
+* **packaging:** add man pages and describe bilingual detection in AppStream data ([e3d22ed](https://github.com/sonnam0904/telebit/commit/e3d22ed00cd55e067736f18e7554a15ce5ad1269))
+
 # [2.12.0](https://github.com/sonnam0904/telebit/compare/v2.11.0...v2.12.0) (2026-09-09)
 
 
