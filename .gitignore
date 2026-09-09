@@ -49,3 +49,16 @@ openwiki/
 
 # dict round-trip harness work dir
 scripts/dict-roundtrip/.work/
+
+__pycache__/
+*.py[cod]
+
+# debhelper build artefacts (debian/rules clean dọn, nhưng đừng để lọt vào git)
+/debian/.debhelper/
+/debian/debhelper-build-stamp
+/debian/files
+/debian/*.substvars
+/debian/*.debhelper.log
+/debian/fcitx5-telebit/
+/telebit-fcitx5/obj-*/
+
