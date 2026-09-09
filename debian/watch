@@ -1,0 +1,11 @@
+version=4
+
+# GitHub tags are the release source of truth (semantic-release creates them).
+# repacksuffix goes with Files-Excluded in debian/copyright: uscan strips those
+# paths and the resulting tarball must not claim to be the upstream one.
+opts="filenamemangle=s%(?:.*?)?v?(\d[\d.]*)\.tar\.gz%telebit-$1.tar.gz%,\
+uversionmangle=s/^v//,\
+repacksuffix=+ds,\
+dversionmangle=s/\+ds\d*$//" \
+  https://github.com/sonnam0904/telebit/tags \
+  (?:.*?/)?v?(\d[\d.]*)\.tar\.gz debian uupdate

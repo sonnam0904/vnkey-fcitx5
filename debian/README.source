@@ -1,0 +1,44 @@
+Notes for anyone touching this packaging
+========================================
+
+Three things about this source package are not obvious from debian/rules.
+
+The CMake project is not at the top level
+-----------------------------------------
+
+telebit-fcitx5/CMakeLists.txt builds the Fcitx 5 addon, the `telebit` command
+and the telebit-setup window; the CMakeLists.txt in the root builds only the
+conversion engine's own test binary. The addon sources reach back up into the
+root for vietnamese.cpp and engine.cpp, so the tree must stay intact — hence
+`dh $@ --sourcedirectory=telebit-fcitx5` rather than moving anything.
+
+A consequence: `dh_auto_test` runs the addon's ctest suite (the doctor tests),
+not the root conversion-engine suite. Upstream CI runs both.
+
+The tarball is repacked
+-----------------------
+
+debian/copyright carries Files-Excluded for dict/, node_modules/, site/ and
+.venv/, and debian/watch adds repacksuffix=+ds. dict/ is the interesting one:
+it holds two word lists used by scripts/dict-roundtrip/run.sh, a regression
+harness that is not part of the build-time tests. dict/vietnamese is derived
+from hunspell-vi and is GPL-2 — free, but it would put a second licence into
+an otherwise MIT source package to review, for data that is already in the
+archive as hunspell-vi and wamerican. Nothing in the build reads it.
+
+If a future version wires that harness into the build, the exclusion has to be
+revisited rather than worked around.
+
+environment.d is deliberately disabled
+--------------------------------------
+
+Upstream installs /usr/lib/environment.d/60-telebit-fcitx5.conf, which points
+GTK_IM_MODULE, QT_IM_MODULE and XMODIFIERS at fcitx5 for the whole graphical
+session. That is a reasonable default for a package installed from upstream's
+own APT repository, but in Debian that choice belongs to im-config: one engine
+package must not select the session's input method framework on behalf of every
+other one. debian/rules therefore passes
+-DTELEBIT_INSTALL_ENVIRONMENTD=OFF, and users run `im-config -n fcitx5`.
+
+This is worth mentioning in the package description of any derivative that
+re-enables it.

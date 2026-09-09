@@ -1,0 +1,85 @@
+Source: fcitx5-telebit
+Section: utils
+Priority: optional
+# The Debian Input Method Team maintains fcitx5 and every fcitx5-* engine,
+# including the two Vietnamese ones already in the archive (fcitx5-unikey,
+# fcitx5-bamboo). Listing the team as Maintainer is what makes this a team
+# package rather than a lone upload looking for a sponsor; do not set it
+# without agreeing with the team first (see debian/README.source).
+Maintainer: Debian Input Method Team <debian-input-method@lists.debian.org>
+Uploaders: FIXME Full Name <sonnn.uct@gmail.com>
+Build-Depends:
+ cmake (>= 3.21),
+ debhelper-compat (= 13),
+ extra-cmake-modules,
+# Any flavour will do — the AI assistant only makes plain HTTPS requests
+# through the common API — and MIT is compatible with either TLS library, so
+# this does not force a second libcurl into a build chroot that already has
+# one.
+ libcurl4-gnutls-dev | libcurl4-openssl-dev,
+ libfcitx5core-dev,
+ libfcitx5utils-dev,
+ libgtk-4-dev (>= 4.6),
+ pkgconf,
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+Homepage: https://sonnam0904.github.io/telebit/
+Vcs-Browser: https://salsa.debian.org/input-method-team/fcitx5-telebit
+Vcs-Git: https://salsa.debian.org/input-method-team/fcitx5-telebit.git
+
+Package: fcitx5-telebit
+Architecture: any
+Depends:
+ fcitx5,
+ ${misc:Depends},
+ ${shlibs:Depends},
+# fcitx5-configtool is where the input method is enabled, and telebit-setup has
+# a button that opens it — but the window degrades gracefully without it, so it
+# is not a hard dependency. wl-clipboard/xclip back the AI assistant's
+# clipboard-context key, which is off by default.
+Recommends:
+ fcitx5-configtool,
+Suggests:
+ wl-clipboard | xclip,
+# The upstream project publishes its own APT repository, where this same addon
+# is packaged as telebit-fcitx5 and installs the same files. Whichever arrives
+# second must replace the first rather than fight it over
+# /usr/lib/*/fcitx5/telebit-fcitx5.so. Provides also satisfies that repo's
+# `telebit` metapackage.
+Provides: telebit-fcitx5
+Conflicts: telebit-fcitx5
+Replaces: telebit-fcitx5
+Description: Vietnamese Telex/VNI input method for Fcitx 5
+ Telebit types Vietnamese with the Telex and VNI layouts on top of Fcitx 5, so
+ it works in GTK, Qt, Electron and terminal applications alike, and inside
+ Flatpak and Snap sandboxes.
+ .
+ Mixed English and Vietnamese typing needs no mode switch. After applying
+ Telex, the engine checks the result against the Vietnamese onset and rime
+ tables and restores the literal keystrokes when it is not a valid Vietnamese
+ syllable, so "person", "cheese" and "toolbox" type as themselves while
+ "tieengs" still becomes "tiếng" — with no EN/VI toggle key and no separate key
+ to strip diacritics. The check is structural rather than a word list, so an
+ English word that happens to spell a valid Vietnamese syllable still converts;
+ doubling the Telex modifier key escapes it.
+ .
+ It is also deliberately small: the engine runs in-process with no candidate
+ window, no helper daemon and no runtime dictionary file, because the syllable
+ tables are compiled in. The addon links no GUI toolkit; the GTK 4 dependency
+ belongs to the separate telebit-setup window.
+ .
+ That window and the `telebit doctor` command are two front ends of the same
+ diagnostics. Both report whether the input method actually reaches
+ applications — the environment the graphical session handed out, which
+ compositor is running, and what each sandbox can see — which is the part
+ fcitx5-diagnose cannot inspect.
+ .
+ Features:
+  * Telex and VNI, with tone placement following modern Vietnamese orthography
+  * automatic English/Vietnamese detection from syllable structure
+  * user-defined macros
+  * per-application preedit behaviour, discovered as applications are used
+ .
+ This is a third Vietnamese engine for Fcitx 5, next to fcitx5-unikey and
+ fcitx5-bamboo. What it adds over those is the bilingual detection above, the
+ sandbox diagnostics, the macro expansion, and the modern tone-placement style.

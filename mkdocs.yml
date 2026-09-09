@@ -93,6 +93,7 @@ nav:
       - Build & test: dev/build-and-test.md
       - Kiểm tra bằng từ điển: dev/dictionary-check.md
       - Kiến trúc: dev/architecture.md
+      - Nộp vào Debian: dev/debian-submission.md
 
 extra:
   social:

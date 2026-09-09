@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+
+# The CMake project that builds the addon is telebit-fcitx5/, not the
+# repository root: the root CMakeLists builds only the conversion-engine test
+# binary, and the addon sources reach back up into the root for
+# vietnamese.cpp/engine.cpp. Hence --sourcedirectory below.
+
+# The addon builds with fcitx5's own compiler settings, which set
+# CMAKE_CXX_FLAGS themselves; +all makes sure Debian's hardening flags are not
+# the ones that get dropped on the way through.
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# The addon writes its own Version field from this, and falls back to
+# `git describe` when it is unset — which inside a build chroot means either a
+# failure or a wrong version. Feed it the changelog instead, minus the Debian
+# revision and any repack suffix.
+export TELEBIT_PACKAGE_VERSION = $(shell dpkg-parsechangelog -SVersion | sed -e 's/-[^-]*$$//' -e 's/[+~].*$$//')
+
+%:
+	dh $@ --sourcedirectory=telebit-fcitx5
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DTELEBIT_BUILD_GUI=ON \
+		-DTELEBIT_INSTALL_ENVIRONMENTD=OFF
+
+# Upstream ships a systemd environment.d drop-in that points
+# GTK_IM_MODULE/QT_IM_MODULE/XMODIFIERS at fcitx5 for the whole graphical
+# session. That is the right default for a self-hosted package, but in Debian
+# selecting the session's input method belongs to im-config, and a single
+# engine package must not decide it for every other one. Hence
+# TELEBIT_INSTALL_ENVIRONMENTD=OFF above; users run `im-config -n fcitx5`.

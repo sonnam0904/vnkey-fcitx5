@@ -1,0 +1,6 @@
+---
+# The team's standard pipeline: build in a clean sid chroot, then lintian,
+# piuparts, blhc and reprotest. Runs on every push to the salsa repository.
+include:
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
