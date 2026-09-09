@@ -1,3 +1,10 @@
+# [2.14.0](https://github.com/sonnam0904/telebit/compare/v2.13.0...v2.14.0) (2026-09-09)
+
+
+### Features
+
+* **packaging:** add the status page to the store listing ([5750e70](https://github.com/sonnam0904/telebit/commit/5750e7012c2eb816c52b7e69096a5de25675ccfe))
+
 # [2.13.0](https://github.com/sonnam0904/telebit/compare/v2.12.0...v2.13.0) (2026-09-09)
 
 
