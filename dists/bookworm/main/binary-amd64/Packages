@@ -1,13 +1,13 @@
 Package: telebit
-Version: 2.13.0+bookworm
+Version: 2.14.0+bookworm
 Architecture: all
 Maintainer: telebit-fcitx5 <https://github.com/sonnam0904/telebit>
 Depends: telebit-fcitx5
-Filename: pool/bookworm/main/t/telebit_2.13.0+bookworm_all.deb
+Filename: pool/bookworm/main/t/telebit_2.14.0+bookworm_all.deb
 Size: 648
-MD5sum: 713e2c5d3d6ec58f8130a171d9b3a101
-SHA1: 2195663a3185b27096d58abf71656b6cba0cb5f3
-SHA256: b4bf1ed081949a4bcf0b887c19c7b5e78dcb894f93e415392d504011ba56159e
+MD5sum: 46362e50f29f86fe0df7a5a1852adb7a
+SHA1: a487fbc8374ad571ddf7088633a4c0fd562d551e
+SHA256: 5e62f85ae0cad25af37aae8fba13a77c7fd537520655181be7e38c7810acecce
 Section: utils
 Priority: optional
 Description: Vietnamese Telex/VNI input method for fcitx5 (metapackage)
@@ -15,17 +15,17 @@ Description: Vietnamese Telex/VNI input method for fcitx5 (metapackage)
  files of its own; it only depends on telebit-fcitx5, the real addon package.
 
 Package: telebit-fcitx5
-Version: 2.13.0+bookworm
+Version: 2.14.0+bookworm
 Architecture: amd64
 Maintainer: telebit-fcitx5 <https://github.com/sonnam0904/telebit>
 Installed-Size: 1110
 Depends: fcitx5, libfcitx5core5 | libfcitx5core7 | libfcitx5core8 | libfcitx5core9 | libfcitx5core10, libcurl4 | libcurl4t64, libgtk-4-1 | libgtk-4-1t64
 Recommends: wl-clipboard, xclip, fcitx5-configtool
-Filename: pool/bookworm/main/t/telebit-fcitx5_2.13.0+bookworm_amd64.deb
-Size: 398282
-MD5sum: 9b92b7b2b39cf39ddf041de48de21785
-SHA1: 721b38c5744caf2d5122cf30b7780c0c1ebf9408
-SHA256: f5a4bdfc56550b498e7afbcf46aa836e1b7d6230525f42e22dafba55e17a3f57
+Filename: pool/bookworm/main/t/telebit-fcitx5_2.14.0+bookworm_amd64.deb
+Size: 398340
+MD5sum: afb94ad36cac0e7824410a643dd0f3c3
+SHA1: c51d00d8e6874c6ffab53ed6b813ba0a52af5003
+SHA256: b850c89461a9072ad822d2de0b1aa4ae4c6c7fb195c79c2bba0643ce36556085
 Section: utils
 Priority: optional
 Description: Vietnamese Telex input method for fcitx5

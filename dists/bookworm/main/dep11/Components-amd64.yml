@@ -136,6 +136,14 @@ Screenshots:
     url: https://sonnam0904.github.io/telebit/img/telebit-setup.png
     width: 820
     height: 760
+- caption:
+    C: 'The status page: whether the input method reaches each application, sandboxes included'
+    vi: 'Trang trạng thái: bộ gõ có tới được từng ứng dụng hay không, kể cả trong sandbox'
+  thumbnails: []
+  source-image:
+    url: https://sonnam0904.github.io/telebit/img/telebit-status.png
+    width: 820
+    height: 760
 ContentRating:
   oars-1.1: {}
 Recommends:
