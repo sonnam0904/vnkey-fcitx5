@@ -15,7 +15,7 @@
   <id>io.github.sonnam0904.Telebit</id>
   <launchable type="desktop-id">io.github.sonnam0904.Telebit.desktop</launchable>
 
-  <metadata_license>CC0-1.0</metadata_license>
+  <metadata_license>MIT</metadata_license>
   <project_license>MIT</project_license>
   <developer id="io.github.sonnam0904">
     <name>Telebit</name>
@@ -111,6 +111,11 @@
       <caption>Telebit Setup: switch the input method on and choose Telex or VNI</caption>
       <caption xml:lang="vi">Cửa sổ Telebit: bật bộ gõ và chọn kiểu gõ Telex hoặc VNI</caption>
       <image type="source" width="820" height="760">https://sonnam0904.github.io/telebit/img/telebit-setup.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>The status page: whether the input method reaches each application, sandboxes included</caption>
+      <caption xml:lang="vi">Trang trạng thái: bộ gõ có tới được từng ứng dụng hay không, kể cả trong sandbox</caption>
+      <image type="source" width="820" height="760">https://sonnam0904.github.io/telebit/img/telebit-status.png</image>
     </screenshot>
   </screenshots>
 

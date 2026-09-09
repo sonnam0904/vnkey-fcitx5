@@ -10,7 +10,7 @@
   <id>io.github.sonnam0904.Telebit.Addon</id>
   <extends>org.fcitx.Fcitx5</extends>
 
-  <metadata_license>CC0-1.0</metadata_license>
+  <metadata_license>MIT</metadata_license>
   <project_license>MIT</project_license>
   <developer id="io.github.sonnam0904">
     <name>Telebit</name>
