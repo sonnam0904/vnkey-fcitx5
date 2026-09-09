@@ -44,6 +44,13 @@ install(
   FILES "${CMAKE_CURRENT_SOURCE_DIR}/io.github.sonnam0904.Telebit.Addon.metainfo.xml"
   DESTINATION share/metainfo)
 
+# Debian Policy wants a manual page for every program in /usr/bin, and lintian
+# says so; installing them here rather than from debian/ means the .deb, the
+# .rpm and a from-source install all get them.
+install(
+  FILES "${CMAKE_CURRENT_SOURCE_DIR}/../man/telebit.1"
+  DESTINATION "${CMAKE_INSTALL_MANDIR}/man1")
+
 # The desktop-application component and its entry only make sense when the
 # window they launch was built. Shipping a .desktop whose Exec does not exist
 # would put a broken launcher in the menu and a broken entry in the store.
@@ -61,4 +68,7 @@ if(TELEBIT_BUILD_GUI)
     FILES "${CMAKE_CURRENT_SOURCE_DIR}/../icons/telebit-fcitx5.svg"
     DESTINATION share/icons/hicolor/scalable/apps
     RENAME "io.github.sonnam0904.Telebit.svg")
+  install(
+    FILES "${CMAKE_CURRENT_SOURCE_DIR}/../man/telebit-setup.1"
+    DESTINATION "${CMAKE_INSTALL_MANDIR}/man1")
 endif()

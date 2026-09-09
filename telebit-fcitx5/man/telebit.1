@@ -1,0 +1,74 @@
+.TH TELEBIT 1 "2026-09-09" "telebit" "User Commands"
+.SH NAME
+telebit \- diagnose the Vietnamese input method path for Fcitx 5
+.SH SYNOPSIS
+.B telebit doctor
+.RI [ \-\-deep ]
+.RI [ \-\-markdown ]
+.br
+.B telebit
+.RB [ \-\-version | \-\-help ]
+.SH DESCRIPTION
+.B telebit
+is the command-line half of Telebit, the Vietnamese Telex/VNI input method for
+Fcitx 5. The input method itself is an Fcitx 5 addon and needs no command; this
+tool exists to answer the question the addon cannot answer from inside:
+whether the input method actually reaches applications.
+.PP
+It deliberately does not duplicate
+.BR fcitx5-diagnose (1),
+which is the better tool for locales, immodule caches and Fcitx 5's own
+configuration. It covers four things that tool cannot see:
+.IP \(bu 3
+inside a Flatpak or Snap sandbox, where the input-method module an application
+needs either exists or does not;
+.IP \(bu 3
+the environment the graphical session handed to applications, rather than the
+environment of the shell this command runs in;
+.IP \(bu 3
+which compositor is running, which on Wayland decides the whole correct
+configuration;
+.IP \(bu 3
+that
+.B GTK_IM_MODULE
+not being set is correct on Plasma and GNOME Wayland, rather than an error.
+.SH COMMANDS
+.TP
+.B doctor
+Probe the session, the host, Fcitx 5 and every sandbox, judge the result and
+print a report. Exits 0 when nothing failed and 1 when at least one check did,
+so it composes in scripts.
+.SH OPTIONS
+.TP
+.B \-\-deep
+Enter every sandbox and read its environment for real, instead of inferring it
+from the sandbox's configuration. The most accurate answer available, at the
+cost of one sandbox launch per application.
+.TP
+.B \-\-markdown
+Print a plain, colourless table meant for pasting into a bug report.
+.TP
+.BR \-\-version ", " \-V
+Print the version and exit. It is the same string the addon reports to Fcitx 5.
+.TP
+.BR \-\-help ", " \-h
+Print usage and exit.
+.SH EXIT STATUS
+.TP
+.B 0
+No check failed. Warnings do not affect the exit status.
+.TP
+.B 1
+At least one check failed.
+.TP
+.B 2
+The command line could not be understood.
+.SH SEE ALSO
+.BR telebit-setup (1),
+.BR fcitx5 (1),
+.BR fcitx5-diagnose (1),
+.BR im-config (8)
+.PP
+Full documentation at
+.UR https://sonnam0904.github.io/telebit/
+.UE .

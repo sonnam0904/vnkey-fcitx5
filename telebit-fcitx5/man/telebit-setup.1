@@ -1,0 +1,53 @@
+.TH TELEBIT-SETUP 1 "2026-09-09" "telebit" "User Commands"
+.SH NAME
+telebit-setup \- switch on and check the Telebit Vietnamese input method
+.SH SYNOPSIS
+.B telebit-setup
+.SH DESCRIPTION
+.B telebit-setup
+is the window half of Telebit, the Vietnamese Telex/VNI input method for
+Fcitx 5. It has two pages, which answer the two different questions someone
+has after installing it.
+.TP
+.B Cài đặt (Setup)
+Whether Telebit is switched on in Fcitx 5, with a button that adds it to the
+current input-method group; the choice between the Telex and VNI layouts; and
+the typing options (spell-check restore, modern tone placement, automatic
+sentence capitalisation, direct commit, AI assistant). Changes are written to
+Fcitx 5 immediately over its D-Bus interface, the same one
+.BR fcitx5-configtool (1)
+uses, and take effect without a restart.
+.IP
+Macros, the per-application preedit list and the key bindings are not shown
+here; the page has a button that opens Fcitx 5's own configuration page for
+Telebit, where they live.
+.TP
+.B Trạng thái (Status)
+The report
+.BR telebit (1)
+produces, rendered as a list rather than a table: the session's input-method
+environment, the running compositor, Fcitx 5 itself, the modules present on the
+host, and what each Flatpak and Snap sandbox can see. A switch turns on the
+deep probe, which enters each sandbox and reads its environment for real. A
+button copies the whole report as Markdown for pasting into a bug report.
+.PP
+The window is not required in order to use Telebit; everything it does can be
+done with
+.BR fcitx5-configtool (1)
+and
+.BR telebit (1).
+.SH ENVIRONMENT
+.TP
+.B AI_API_KEY\fR, \fBANTHROPIC_API_KEY\fR, \fBCLAUDE_CODE_OAUTH_TOKEN
+Credentials for the optional AI assistant, which is off by default. They are
+read from the environment and never stored in Telebit's configuration. See the
+documentation for the full list of AI_* variables.
+.SH SEE ALSO
+.BR telebit (1),
+.BR fcitx5 (1),
+.BR fcitx5-configtool (1),
+.BR im-config (8)
+.PP
+Full documentation at
+.UR https://sonnam0904.github.io/telebit/
+.UE .

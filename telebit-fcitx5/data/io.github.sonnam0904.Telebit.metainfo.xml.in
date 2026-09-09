@@ -37,6 +37,30 @@
       Snap.
     </p>
     <p>
+      Typing English in the middle of Vietnamese needs no mode switch: the
+      engine checks each result against the structure of a Vietnamese syllable
+      and gives you back exactly the keys you pressed when it is not one. So
+      "person" and "cheese" type as themselves, while "tieengs" still becomes
+      "tiếng" — no EN/VI toggle key, no key to strip diacritics.
+    </p>
+    <p xml:lang="vi">
+      Gõ chen tiếng Anh giữa tiếng Việt không cần chuyển chế độ: engine đối
+      chiếu kết quả với cấu trúc âm tiết tiếng Việt và trả lại đúng những phím
+      bạn đã gõ nếu đó không phải âm tiết hợp lệ. Nhờ vậy "person", "cheese" ra
+      nguyên dạng, còn "tieengs" vẫn thành "tiếng" — không cần phím bật/tắt
+      tiếng Việt, cũng không cần phím xoá dấu.
+    </p>
+    <p>
+      It is small and stays out of the way: the engine runs in-process, with no
+      candidate window, no helper daemon and no dictionary file to load — the
+      syllable tables are built in.
+    </p>
+    <p xml:lang="vi">
+      Bộ gõ nhẹ và không chen ngang: engine chạy ngay trong tiến trình, không
+      cửa sổ chọn từ, không tiến trình phụ, không phải nạp file từ điển nào —
+      bảng âm tiết được biên dịch sẵn vào trong.
+    </p>
+    <p>
       Installing this brings in the fcitx5 engine itself. The window it opens,
       Telebit Setup, reports whether the input method is actually reaching your
       applications — the environment the graphical session handed out, which
