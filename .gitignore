@@ -62,3 +62,4 @@ __pycache__/
 /debian/fcitx5-telebit/
 /telebit-fcitx5/obj-*/
 
+docs/dev/debian-submission.md
