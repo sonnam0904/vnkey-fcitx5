@@ -1,3 +1,10 @@
+# [2.12.0](https://github.com/sonnam0904/telebit/compare/v2.11.0...v2.12.0) (2026-09-09)
+
+
+### Features
+
+* enhance installation script and documentation for GTK4 support ([1acd460](https://github.com/sonnam0904/telebit/commit/1acd460a52724d0df19853c97bb3d1fdb150039e))
+
 # [2.11.0](https://github.com/sonnam0904/telebit/compare/v2.10.0...v2.11.0) (2026-08-20)
 
 
