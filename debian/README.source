@@ -42,3 +42,12 @@ other one. debian/rules therefore passes
 
 This is worth mentioning in the package description of any derivative that
 re-enables it.
+
+Maintainer is the upstream author, not the team
+-----------------------------------------------
+
+debian/control names the upstream author. ITP #1147199 states the intent to
+maintain this inside the Debian Input Method Team, which is where the other
+fcitx5-* engines live, but the team has not adopted the package yet. Naming a
+team that has not agreed would speak for them. When they do adopt it, move
+Maintainer to the team address and put the author under Uploaders.
